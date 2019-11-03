@@ -1,0 +1,11 @@
+{
+    "uris": [
+        "file:///home/jcaspen/Escritorio/segurcastillo"
+    ],
+    "indexDatabaseUri": "file:///home/jcaspen/.cache/php-ide-serenata/index-d55a8406fd32e51c5b964c824350feb0.sqlite",
+    "phpVersion": 7.3,
+    "excludedPathExpressions": [],
+    "fileExtensions": [
+        "php"
+    ]
+}
