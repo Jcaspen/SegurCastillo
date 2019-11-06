@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\AuthItem;
 use app\models\AuthItemSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AuthItemController implements the CRUD actions for AuthItem model.
@@ -42,6 +42,50 @@ class AuthItemController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+    public function actionCrearPermiso()
+    {
+        $auth = Yii::$app->authManager;
+
+        /*// agrega el permiso "crear un Usuario"
+        $crearUser = $auth->createPermission('crearUsuario');
+        $crearUser->description = 'Crea un usuario';
+        $auth->add($crearUser);
+        */
+        /*
+        // agrega el rol "author" y le asigna el permiso "createPost"
+        $author = $auth->createRole('admini');
+        $auth->add($author);
+        $auth->addChild($author, $createPost);
+        */
+
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $crearUser);
+
+        //agrego Rol de Mediador
+        $mediador = $auth->createRole('mediador');
+        $auth->add($mediador);
+
+        //agrego Rol de Agente
+        $agente = $auth->createRole('agente');
+        $auth->add($agente);
+
+
+
+        /*
+        // agrega el rol "admin" y le asigna el permiso "updatePost"
+        // más los permisos del rol "author"
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $updatePost);
+        $auth->addChild($admin, $author);
+        */
+
+        // asigna roles a usuarios. 1 y 2 son IDs devueltos por IdentityInterface::getId()
+        // usualmente implementado en tu modelo User.
+        $auth->assign($mediador, 1);
+        $auth->assign($admin, 2);
     }
 
     /**

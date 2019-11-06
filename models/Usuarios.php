@@ -17,6 +17,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
     public $password_repeat;
+    public $rol;
 
     /**
      * {@inheritdoc}
@@ -34,6 +35,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login'], 'required'],
             [['login'], 'string', 'max' => 50],
             [['login'], 'unique'],
+            [['rol'], 'required'],
             [['password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
             [['password'], 'compare', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
         ];

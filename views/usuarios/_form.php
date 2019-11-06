@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model,'rol')->dropdownList(['1' => 'Administrador', '2' => 'Mediador', '3' => 'Agente']) ?>
+
         <div class="form-group">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
         </div>
