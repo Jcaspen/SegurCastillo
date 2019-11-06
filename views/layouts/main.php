@@ -43,6 +43,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Clientes', 'url' => ['/clientes/index']],
+            ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Conectar', 'url' => ['/site/login']]
@@ -50,7 +51,7 @@ AppAsset::register($this);
                 '<li class="nav-item">'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->user->identity->login . ')',
                     ['class' => 'btn btn-dark nav-link logout']
                 )
                 . Html::endForm()
