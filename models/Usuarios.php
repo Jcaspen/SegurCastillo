@@ -110,11 +110,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function beforeSave($insert)
     {
+        $auth = Yii::$app->authManager;
+
         if (!parent::beforeSave($insert)) {
             return false;
         }
         $this->password = Yii::$app->security
             ->generatePasswordHash($this->password);
+
+        $auth = Yii::$app->authManager;
+        $authRole = $auth->getRole('admin');
+        $auth->assign($authRole, $this->getId());
         return true;
     }
 }
