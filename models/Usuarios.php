@@ -17,7 +17,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
     public $password_repeat;
-    public $rol;
 
     /**
      * {@inheritdoc}
@@ -35,15 +34,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login'], 'required'],
             [['login'], 'string', 'max' => 50],
             [['login'], 'unique'],
-            [['rol'], 'required'],
             [['password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
             [['password'], 'compare', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
+            [['rol'], 'required'],
         ];
     }
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['password_repeat']);
+        return array_merge(parent::attributes(), ['password_repeat', 'rol']);
     }
 
     /**
@@ -55,6 +54,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'login' => 'Login',
             'password' => 'Password',
+            'rol' => 'Rol',
         ];
     }
     /**
@@ -82,6 +82,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getId()
     {
+        echo $this->id;
         return $this->id;
     }
     /**
@@ -89,6 +90,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
+    }
+
+    public function getRol()
+    {
+        return $this->rol;
     }
     /**
      * @param string $authKey
@@ -110,17 +116,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function beforeSave($insert)
     {
-        $auth = Yii::$app->authManager;
-
         if (!parent::beforeSave($insert)) {
             return false;
         }
+
         $this->password = Yii::$app->security
             ->generatePasswordHash($this->password);
 
-        $auth = Yii::$app->authManager;
-        $authRole = $auth->getRole('admin');
-        $auth->assign($authRole, $this->getId());
         return true;
     }
 }

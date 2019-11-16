@@ -46,8 +46,8 @@ class AuthItemController extends Controller
     public function actionCrearPermiso()
     {
         $auth = Yii::$app->authManager;
-
-        /*// agrega el permiso "crear un Usuario"
+        /*
+        // agrega el permiso "crear un Usuario"
         $crearUser = $auth->createPermission('crearUsuario');
         $crearUser->description = 'Crea un usuario';
         $auth->add($crearUser);
@@ -60,8 +60,8 @@ class AuthItemController extends Controller
         */
 
         $admin = $auth->createRole('admin');
-        $auth->add($admin);
-        $auth->addChild($admin, $crearUser);
+        //$auth->add($admin);
+        //$auth->addChild($admin, $crearUser);
 
         //agrego Rol de Mediador
         $mediador = $auth->createRole('mediador');
