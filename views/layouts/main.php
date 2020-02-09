@@ -9,6 +9,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\filters\AccessControl;
 
 AppAsset::register($this);
 ?>
@@ -28,29 +29,33 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+    if (\Yii::$app->user->can('crearUsuario')){
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-dark bg-dark navbar-expand-md fixed-top',
         ],
         'collapseOptions' => [
-            'class' => 'justify-content-end',
+            'class' => 'justify-content-center',
         ],
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Clientes', 'url' => ['/clientes/index']],
+            ['label' => 'auth', 'url' => ['/auth-item/index']],
+            ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
+            ['label' => 'roles', 'url' => ['/auth-assignment/index']],
+            ['label' => 'Contacto', 'url' => ['/site/contact']],
+            ['label' => 'VIDA', 'url' => ['/site/vida']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Conectar', 'url' => ['/site/login']]
             ) : (
                 '<li class="nav-item">'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->user->identity->login . ')',
                     ['class' => 'btn btn-dark nav-link logout']
                 )
                 . Html::endForm()
@@ -59,6 +64,37 @@ AppAsset::register($this);
         ],
     ]);
     NavBar::end();
+}else {
+    NavBar::begin([
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-dark bg-dark navbar-expand-md fixed-top',
+        ],
+        'collapseOptions' => [
+            'class' => 'justify-content-center',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav'],
+        'items' => [
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Contacto', 'url' => ['/site/contact']],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Conectar', 'url' => ['/site/login']]
+            ) : (
+                '<li class="nav-item">'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->login . ')',
+                    ['class' => 'btn btn-dark nav-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+    NavBar::end();
+}
     ?>
 
     <div class="container">
@@ -72,7 +108,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="float-left">&copy; SegurCastillo <?= date('Y') ?></p>
 
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>

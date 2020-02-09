@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\ContactForm;
+use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -124,5 +124,56 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionVida()
+    {
+        return $this->render('vida');
+    }
+
+
+    public function actionCrearPermiso()
+    {
+        $auth = Yii::$app->authManager;
+
+        /*// agrega el permiso "crear un Usuario"
+        $crearUser = $auth->createPermission('crearUsuario');
+        $crearUser->description = 'Crea un usuario';
+        $auth->add($crearUser);
+        */
+        /*
+        // agrega el rol "author" y le asigna el permiso "createPost"
+        $author = $auth->createRole('admini');
+        $auth->add($author);
+        $auth->addChild($author, $createPost);
+        */
+
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $crearUser);
+
+        //agrego Rol de Mediador
+        $mediador = $auth->createRole('mediador');
+        $auth->add($mediador);
+
+        //agrego Rol de Agente
+        $agente = $auth->createRole('agente');
+        $auth->add($agente);
+
+
+
+        /*
+        // agrega el rol "admin" y le asigna el permiso "updatePost"
+        // más los permisos del rol "author"
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $updatePost);
+        $auth->addChild($admin, $author);
+        */
+
+        // asigna roles a usuarios. 1 y 2 son IDs devueltos por IdentityInterface::getId()
+        // usualmente implementado en tu modelo User.
+        $auth->assign($mediador, 1);
+        $auth->assign($admin, 2);
     }
 }

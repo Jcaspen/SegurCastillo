@@ -7,10 +7,9 @@ $this->title = 'SegurCastillo';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>SegurCastillo</h1>
+        <h1>Vida</h1>
 
-        <p class="lead">Tu aplicación de seguros de confianza.</p>
-        
+        <p class="lead">Seguros de Vida</p>
 
     </div>
 </div>
