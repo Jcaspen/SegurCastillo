@@ -46,22 +46,28 @@ class AuthItemController extends Controller
     public function actionCrearPermiso()
     {
         $auth = Yii::$app->authManager;
-        /*
-        // agrega el permiso "crear un Usuario"
-        $crearUser = $auth->createPermission('crearUsuario');
-        $crearUser->description = 'Crea un usuario';
-        $auth->add($crearUser);
-        */
-        /*
-        // agrega el rol "author" y le asigna el permiso "createPost"
-        $author = $auth->createRole('admini');
-        $auth->add($author);
-        $auth->addChild($author, $createPost);
-        */
+
+        //agrega el permiso "crear un Usuario"
+        $crearUsuario = $auth->createPermission('crearUsuario');
+        $crearUsuario->description = 'Crea un usuario';
+        $auth->add($crearUsuario);
+
+        //agrega el permiso "modificar a un Usuario"
+        $modificarUsuario = $auth->createPermission('modificarUsuario');
+        $modificarUsuario->description = 'Modifica un usuario';
+        $auth->add($modificarUsuario);
+
+        //agrega el permiso "Borrar un Usuario"
+        $borrarUsuario = $auth->createPermission('borrarUsuario');
+        $borrarUsuario->description = 'Borra un usuario';
+        $auth->add($borrarUsuario);
+
 
         $admin = $auth->createRole('admin');
-        //$auth->add($admin);
-        //$auth->addChild($admin, $crearUser);
+        $auth->add($admin);
+        $auth->addChild($admin, $crearUsuario);
+        $auth->addChild($admin, $modificarUsuario);
+        $auth->addChild($admin, $borrarUsuario);
 
         //agrego Rol de Mediador
         $mediador = $auth->createRole('mediador');

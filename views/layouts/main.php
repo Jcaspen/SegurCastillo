@@ -29,13 +29,12 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-dark bg-dark navbar-expand-md fixed-top',
         ],
         'collapseOptions' => [
-            'class' => 'justify-content-end',
+            'class' => 'justify-content-center',
         ],
     ]);
     echo Nav::widget([
@@ -47,6 +46,7 @@ AppAsset::register($this);
             ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
             ['label' => 'roles', 'url' => ['/auth-assignment/index']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
+            ['label' => 'VIDA', 'url' => ['/site/vida']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Conectar', 'url' => ['/site/login']]
             ) : (
