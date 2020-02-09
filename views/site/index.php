@@ -10,6 +10,7 @@ $this->title = 'SegurCastillo';
         <h1>SegurCastillo</h1>
 
         <p class="lead">Tu aplicación de seguros de confianza.</p>
+        
 
     </div>
 </div>
