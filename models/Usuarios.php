@@ -34,15 +34,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login'], 'required'],
             [['login'], 'string', 'max' => 50],
             [['login'], 'unique'],
-            [['password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
-            [['password'], 'compare', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
+            [['password', 'password_repeat'], 'string'],
+            [['password'], 'compare', 'on' => self::SCENARIO_CREATE],
+            [['password_repeat'], 'required', 'on' => self::SCENARIO_CREATE],
             [['rol'], 'required'],
         ];
     }
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['password_repeat', 'rol']);
+        return array_merge(parent::attributes(), ['password_repeat']);
+        //return array_merge(parent::attributes(), ['password_repeat', 'rol']);
     }
 
     /**
@@ -54,6 +56,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'login' => 'Login',
             'password' => 'Password',
+            'password_repeat' => 'Confirmar contraseña',
             'rol' => 'Rol',
         ];
     }
@@ -120,7 +123,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $this->password = Yii::$app->security->generatePasswordHash($this->password);
+        if ($insert && $this->scenario === self::SCENARIO_CREATE) {
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+        }
 
         return true;
     }

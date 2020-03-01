@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "auth_item".
  *
@@ -101,7 +99,7 @@ class AuthItem extends \yii\db\ActiveRecord
      */
     public function getChildren()
     {
-        return $this->hasMany(AuthItem::className(), ['name' => 'child'])->viaTable('auth_item_child', ['parent' => 'name']);
+        return $this->hasMany(self::className(), ['name' => 'child'])->viaTable('auth_item_child', ['parent' => 'name']);
     }
 
     /**
@@ -109,6 +107,6 @@ class AuthItem extends \yii\db\ActiveRecord
      */
     public function getParents()
     {
-        return $this->hasMany(AuthItem::className(), ['name' => 'parent'])->viaTable('auth_item_child', ['child' => 'name']);
+        return $this->hasMany(self::className(), ['name' => 'parent'])->viaTable('auth_item_child', ['child' => 'name']);
     }
 }
