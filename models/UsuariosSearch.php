@@ -17,7 +17,7 @@ class UsuariosSearch extends Usuarios
     {
         return [
             [['id'], 'integer'],
-            [['login', 'password'], 'safe'],
+            [['login', 'password', 'rol'], 'safe'],
         ];
     }
     /**
@@ -41,6 +41,9 @@ class UsuariosSearch extends Usuarios
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+        'pageSize' => 10,
+            ],
         ]);
         $this->load($params);
         if (!$this->validate()) {
@@ -51,9 +54,11 @@ class UsuariosSearch extends Usuarios
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'Rol' => $this->rol,
         ]);
         $query->andFilterWhere(['ilike', 'login', $this->login])
-            ->andFilterWhere(['ilike', 'password', $this->password]);
+            ->andFilterWhere(['ilike', 'password', $this->password])
+            ->andFilterWhere(['ilike', 'rol', $this->rol]);
         return $dataProvider;
     }
 }
