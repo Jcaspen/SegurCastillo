@@ -18,6 +18,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const SCENARIO_UPDATE = 'update';
     public $password_repeat;
 
+
     /**
      * {@inheritdoc}
      */
@@ -128,5 +129,18 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         }
 
         return true;
+    }
+
+    public function getUsuario()
+    {
+        return $this->hasOne(self::className(), ['login' => 'login'])->inverseOf('usuarios');
+    }
+
+    public static function lista($login)
+    {
+        return static::find()
+            ->select('login')
+            ->where(['login' => $login])
+            ->column();
     }
 }
