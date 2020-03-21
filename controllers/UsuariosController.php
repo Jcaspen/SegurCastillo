@@ -5,9 +5,11 @@ namespace app\controllers;
 use app\models\Usuarios;
 use app\models\UsuariosSearch;
 use Yii;
+use yii\bootstrap4\ActiveForm;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -65,6 +67,12 @@ class UsuariosController extends Controller
     public function actionCreate()
     {
         $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::debug($model->attributes);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $auth = Yii::$app->authManager;
@@ -126,5 +134,12 @@ class UsuariosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionUsuario($login)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return Usuarios::lista($login);
     }
 }
