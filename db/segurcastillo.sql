@@ -17,9 +17,9 @@ CREATE TABLE clientes
 );
 
 CREATE SEQUENCE polizas_empresas
-  start with 120000000
+  start with 1200000000
   increment by 1
-  maxvalue 9999999999
+  maxvalue 1299999999
   minvalue 1;
 ;
 
@@ -29,27 +29,65 @@ CREATE TABLE empresas
 (
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_empresas')
-  , empresas_dni            varchar(9)
-  , empresas_nombre         varchar(255)
-  , empresas_direccion      varchar (255)
-  , FOREIGN KEY (empresas_dni,empresas_nombre,empresas_direccion)
-    REFERENCES clientes (dni,nombre,direccion)
+  , cif                     varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
+  , tomador_nombre          varchar(255)      NOT NULL
+  , facturacion_anual       varchar (255)     NOT NULL
+  , capital_asegurado       numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni,tomador_nombre)
+    REFERENCES clientes (dni,nombre)
 );
+
+
+CREATE SEQUENCE planes_pensiones
+  start with 1300000000
+  increment by 1
+  maxvalue 1399999999
+  minvalue 1;
+;
 
 DROP TABLE IF EXISTS planp CASCADE;
 
 CREATE TABLE planp
 (
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
+    id                      BIGSERIAL         PRIMARY KEY
+  , poliza                  bigint            DEFAULT nextval('planes_pensiones')
+  , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
+  , tomador_nombre          varchar(255)                       ON UPDATE CASCADE
+  , ingreso_mensual         numeric(4)        DEFAULT '0'
+  , capital                 numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni,tomador_nombre)
+    REFERENCES clientes (dni,nombre)
 );
+
+CREATE SEQUENCE polizas_comunidad
+  start with 1400000000
+  increment by 1
+  maxvalue 1499999999
+  minvalue 1;
+;
 
 DROP TABLE IF EXISTS comunidades CASCADE;
 
 CREATE TABLE comunidades
 (
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
+    id                      BIGSERIAL         PRIMARY KEY
+  , poliza                  bigint            DEFAULT nextval('polizas_comunidad')
+  , cif                     varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
+  , responsable_nombre      varchar(255)                       ON UPDATE CASCADE
+  , direccion               varchar(255)      NOT NULL
+  , poblacion               varchar(255)      NOT NULL
+  , provincia               varchar(255)      NOT NULL
+  , cp                      numeric(5)        NOT NULL
+  , viviendas               numeric(5)        NOT NULL
+  , metros_cuadrados        numeric(5)        NOT NULL
+  , capital_asegurado       numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni,tomador_nombre)
+    REFERENCES clientes (dni,nombre)
 );
 
 DROP TABLE IF EXISTS hogares CASCADE;
