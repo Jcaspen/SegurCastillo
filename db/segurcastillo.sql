@@ -14,6 +14,7 @@ CREATE TABLE clientes
                                 CHECK      (telefono>=100000000)
   , fecha_nac     date          NOT NULL
   , carnet        varchar(40)
+  , polizas       numeric(5)    
 );
 
 CREATE SEQUENCE polizas_empresas
@@ -40,44 +41,52 @@ CREATE TABLE empresas
 );
 
 
-CREATE SEQUENCE planes_pensiones
-  start with 1300000000
+-- Las pólizas de Vida engloba los seguros Vida, Salud y Plan de Pensiones
+
+CREATE SEQUENCE polizas_vida
+  start with 0100000000
   increment by 1
-  maxvalue 1399999999
+  maxvalue 0299999999
   minvalue 1;
 ;
 
-DROP TABLE IF EXISTS planp CASCADE;
+DROP TABLE IF EXISTS vida CASCADE;
 
-CREATE TABLE planp
+CREATE TABLE vida
 (
     id                      BIGSERIAL         PRIMARY KEY
-  , poliza                  bigint            DEFAULT nextval('planes_pensiones')
+  , poliza                  bigint            DEFAULT nextval('polizas_vida')
   , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
   , tomador_nombre          varchar(255)                       ON UPDATE CASCADE
+  , ocupacion               varchar(255)      NOT NULL
+  , ingresos_anuales        varchar(255)
+  , tipo_poliza             varchar(255)      DEFAULT 'vida'
   , ingreso_mensual         numeric(4)        DEFAULT '0'
   , capital                 numeric(9)        DEFAULT '0'
+  , cuestionario            numeric(1)        NOT NULL
   , prima                   numeric(9)        DEFAULT '0'
   , FOREIGN KEY (tomador_dni,tomador_nombre)
     REFERENCES clientes (dni,nombre)
 );
 
-CREATE SEQUENCE polizas_comunidad
-  start with 1400000000
+
+-- La Tabla hogar es la categoría que engloba los seguros Hogar y Comunidades
+
+CREATE SEQUENCE polizas_hogar
+  start with 0700000000
   increment by 1
-  maxvalue 1499999999
+  maxvalue 0899999999
   minvalue 1;
 ;
 
-DROP TABLE IF EXISTS comunidades CASCADE;
+DROP TABLE IF EXISTS hogares CASCADE;
 
-CREATE TABLE comunidades
+CREATE TABLE hogares
 (
     id                      BIGSERIAL         PRIMARY KEY
-  , poliza                  bigint            DEFAULT nextval('polizas_comunidad')
-  , cif                     varchar(9)        UNIQUE NOT NULL
+  , poliza                  bigint            DEFAULT nextval('polizas_hogar')
   , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
-  , responsable_nombre      varchar(255)                       ON UPDATE CASCADE
+  , tomador_nombre          varchar(255)                       ON UPDATE CASCADE
   , direccion               varchar(255)      NOT NULL
   , poblacion               varchar(255)      NOT NULL
   , provincia               varchar(255)      NOT NULL
@@ -90,93 +99,63 @@ CREATE TABLE comunidades
     REFERENCES clientes (dni,nombre)
 );
 
-DROP TABLE IF EXISTS hogares CASCADE;
+-- La tabla autos es la categoría que engloba los seguros de Autos, Bicis y embarcaciones
 
-CREATE TABLE hogares
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS salud CASCADE;
-
-CREATE TABLE salud
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS vida CASCADE;
-
-CREATE TABLE vida
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS decesos CASCADE;
-
-CREATE TABLE decesos
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
+CREATE SEQUENCE polizas_autos
+  start with 0500000000
+  increment by 1
+  maxvalue 0699999999
+  minvalue 1;
+;
 
 DROP TABLE IF EXISTS autos CASCADE;
 
 CREATE TABLE autos
 (
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
+    id                      BIGSERIAL         PRIMARY KEY
+  , poliza                  bigint            DEFAULT nextval('polizas_autos')
+  , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
+  , tomador_nombre          varchar(255)                       ON UPDATE CASCADE
+  , tipo_auto               varchar(255)      NOT NULL
+  , marca                   varchar(255)      NOT NULL
+  , modelo                  varchar(255)      NOT NULL
+  , matricula               varchar(255)
+  , caballos                numeric(5)        NOT NULL
+  , tipo_poliza             varchar(255)      DEFAULT 'autos'
+  , capital_asegurado       numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni,tomador_nombre)
+    REFERENCES clientes (dni,nombre)
 );
 
-DROP TABLE IF EXISTS viajes CASCADE;
+-- La tabla no vida es la categoria que engloba los seguros de Responsabilidad Civil
+-- Defensa jurídica, Agricolas, Viajes y Decesos
 
-CREATE TABLE viajes
+CREATE SEQUENCE polizas_no_vida
+  start with 0300000000
+  increment by 1
+  maxvalue 0499999999
+  minvalue 1;
+;
+
+DROP TABLE IF EXISTS no_vida CASCADE;
+
+CREATE TABLE no_vida
 (
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
+    id                      BIGSERIAL         PRIMARY KEY
+  , poliza                  bigint            DEFAULT nextval('polizas_no_vida')
+  , tomador_dni             varchar(9)        NOT NULL         ON UPDATE CASCADE
+  , tomador_nombre          varchar(255)                       ON UPDATE CASCADE
+  , tomador_edad            date              NOT NULL
+  , riesgo                  varchar(255)      NOT NULL
+  , integrantes             numeric(1)        NOT NULL
+  , tipo_poliza             varchar(255)      DEFAULT 'decesos'
+  , capital_asegurado       numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni,tomador_nombre,tomador_edad)
+    REFERENCES clientes (dni,nombre,fecha_nac)
 );
 
-DROP TABLE IF EXISTS bicis CASCADE;
-
-CREATE TABLE bicis
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS embarcaciones CASCADE;
-
-CREATE TABLE embarcaciones
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS rcs CASCADE;
-
-CREATE TABLE rcs
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS defensas CASCADE;
-
-CREATE TABLE defensas
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
-
-DROP TABLE IF EXISTS agricolas CASCADE;
-
-CREATE TABLE agricolas
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , nombre        varchar(255)
-);
 
 DROP TABLE IF EXISTS usuarios CASCADE;
 
