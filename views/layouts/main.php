@@ -46,7 +46,7 @@ AppAsset::register($this);
             ['label' => 'Clientes', 'url' => ['/clientes/index']],
             ['label' => 'auth', 'url' => ['/auth-item/index']],
             ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
-            ['label' => 'roles', 'url' => ['/auth-assignment/index']],
+            ['label' => 'Permisos', 'url' => ['/auth-item-child/index']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
             ['label' => 'VIDA', 'url' => ['/site/vida']],
             Yii::$app->user->isGuest ? (

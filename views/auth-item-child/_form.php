@@ -4,17 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AuthItem */
+/* @var $model app\models\AuthItemChild */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="auth-item-form">
+<div class="auth-item-child-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'type')->dropdownList(['1' => 'Rol', '2' => 'Permiso']) ?>
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'parent')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'child')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -66,24 +66,27 @@ class UsuariosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
+        if (\Yii::$app->user->can('crearUsuario')) {
+            $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::debug($model->attributes);
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
+            if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+                Yii::debug($model->attributes);
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $auth = Yii::$app->authManager;
-            $authRole = $auth->getRole($model->getRol());
-            $auth->assign($authRole, $model->getId());
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $auth = Yii::$app->authManager;
+                $authRole = $auth->getRole($model->getRol());
+                $auth->assign($authRole, $model->getId());
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -96,14 +99,16 @@ class UsuariosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if (\Yii::$app->user->can('modificarUsuario')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
