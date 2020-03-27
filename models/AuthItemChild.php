@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "auth_item_child".
  *
@@ -43,8 +41,8 @@ class AuthItemChild extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'parent' => 'Parent',
-            'child' => 'Child',
+            'parent' => 'Rol',
+            'child' => 'Permiso',
         ];
     }
 

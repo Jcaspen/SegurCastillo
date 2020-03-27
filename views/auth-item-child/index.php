@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\AuthItemChildSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Auth Item Children';
+$this->title = 'Permisos asignados';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auth-item-child-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Auth Item Child', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Asignar permiso', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -26,11 +26,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'parent',
             'child',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['auth-item-child/update', 'parent' => $model->parent, 'child' => $model->child],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['auth-item-child/delete', 'parent' => $model->parent, 'child' => $model->child],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea eliminar el permiso?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 

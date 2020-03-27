@@ -31,18 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'login',
             'rol',
-            ['class' => 'yii\grid\ActionColumn'],
             [
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
                'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['usuarios/update', 'id' => $key],
+                       );
+                   },
                    'delete' => function ($url, $model, $key) {
                        return Html::a(
                            'Eliminar',
                            ['usuarios/delete', 'id' => $key],
                            [
                                'data-method' => 'POST',
-                               'data-confirm' => '¿Seguro que desea eliminar el usuario?',
+                               'data-confirm' => '¿Seguro que desea eliminar el Usuario?',
                            ]
                        );
                    },

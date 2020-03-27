@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'parent')->dropdownList(['admin' => 'Administrador', 'mediador' => 'Mediador', 'agente' => 'Agente']) ?>
+    <?= $form->field($model, 'parent')->textInput(['maxlength' => true, 'readonly'=>true]) ?>
 
     <?= $form->field($model, 'child')->dropdownList(['eliminarPolizas' => 'Eliminar pólizas',
                                                      'modificarPolizas' => 'Modificar pólizas',
