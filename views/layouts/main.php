@@ -43,12 +43,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Clientes', 'url' => ['/clientes/index']],
-            ['label' => 'auth', 'url' => ['/auth-item/index']],
+            ['label' => 'Roles y permisos', 'url' => ['/auth-item/index']],
             ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
-            ['label' => 'roles', 'url' => ['/auth-assignment/index']],
-            ['label' => 'Contacto', 'url' => ['/site/contact']],
-            ['label' => 'VIDA', 'url' => ['/site/vida']],
+            ['label' => 'Permisos asignados', 'url' => ['/auth-item-child/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Conectar', 'url' => ['/site/login']]
             ) : (

@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Usuarios */
+/* @var $model app\models\AuthItemChild */
 
-$this->title = 'Modificar Usuarios: ' . $model->login;
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->title = 'Modificar permisos de ' . $model->parent;
+$this->params['breadcrumbs'][] = ['label' => 'Permisos asignados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Modificar';
 ?>
-<div class="usuarios-update">
+<div class="auth-item-child-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

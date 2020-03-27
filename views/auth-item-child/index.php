@@ -2,35 +2,32 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\grid\ActionColumn;
-use yii\grid\DataColumn;
-use yii\grid\SerialColumn;
-use yii\web\View;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UsuariosSearch */
+/* @var $searchModel app\models\AuthItemChildSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usuarios';
+$this->title = 'Permisos asignados';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuarios-index">
+<div class="auth-item-child-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Crear Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Asignar permiso', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'login',
-            'rol',
+            'parent',
+            'child',
             [
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
@@ -38,16 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
                    'update' => function ($url, $model, $key) {
                        return Html::a(
                            'Modificar',
-                           ['usuarios/update', 'id' => $key],
+                           ['auth-item-child/update', 'parent' => $model->parent, 'child' => $model->child],
                        );
                    },
                    'delete' => function ($url, $model, $key) {
                        return Html::a(
                            'Eliminar',
-                           ['usuarios/delete', 'id' => $key],
+                           ['auth-item-child/delete', 'parent' => $model->parent, 'child' => $model->child],
                            [
                                'data-method' => 'POST',
-                               'data-confirm' => '¿Seguro que desea eliminar el Usuario?',
+                               'data-confirm' => '¿Seguro que desea eliminar el permiso?',
                            ]
                        );
                    },
@@ -55,5 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
            ],
         ],
     ]); ?>
+
+    <?php Pjax::end(); ?>
 
 </div>
