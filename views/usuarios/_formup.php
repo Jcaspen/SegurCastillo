@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
        'enableAjaxValidation' => true,
    ]); ?>
-        <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'login')->textInput(['maxlength' => true, 'readonly'=>true]) ?>
         <?= $form->field($model, 'rol')->dropdownList(['admin' => 'Administrador', 'mediador' => 'Mediador', 'agente' => 'Agente']) ?>
 
         <div class="form-group">

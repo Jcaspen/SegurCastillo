@@ -70,7 +70,6 @@ class UsuariosController extends Controller
             $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
 
             if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-                Yii::debug($model->attributes);
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
@@ -79,7 +78,7 @@ class UsuariosController extends Controller
                 $auth = Yii::$app->authManager;
                 $authRole = $auth->getRole($model->getRol());
                 $auth->assign($authRole, $model->getId());
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'id' => $model->id]);
             }
 
             return $this->render('create', [
@@ -101,7 +100,7 @@ class UsuariosController extends Controller
         $model = $this->findModel($id);
         if (\Yii::$app->user->can('modificarUsuario')) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'id' => $model->id]);
             }
 
             return $this->render('update', [

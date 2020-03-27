@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\AuthItemChild */
 
 $this->title = 'Modificar permisos de ' . $model->parent;
-$this->params['breadcrumbs'][] = ['label' => 'Auth Item Children', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->parent, 'url' => ['view', 'parent' => $model->parent, 'child' => $model->child]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => 'Permisos asignados', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Modificar';
 ?>
 <div class="auth-item-child-update">
 
