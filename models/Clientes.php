@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "clientes".
  *
@@ -12,6 +10,10 @@ use Yii;
  */
 class Clientes extends \yii\db\ActiveRecord
 {
+    const SCENARIO_CREATE = 'create';
+    const SCENARIO_UPDATE = 'update';
+
+
     /**
      * {@inheritdoc}
      */
@@ -27,6 +29,13 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             [['nombre'], 'string', 'max' => 255],
+            [['nombre'], 'required'],
+            [['dni'], 'required'],
+            [['dni'], 'string', 'max' => 9],
+            [['dni'], 'unique'],
+            [['nombre'], 'required'],
+            [['telefono'], 'safe'],
+            [['fecha_nac'], 'safe'],
         ];
     }
 
@@ -38,6 +47,7 @@ class Clientes extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
+            'fecha_nac' => 'Fecha de nacimiento',
         ];
     }
 }
