@@ -36,8 +36,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login'], 'string', 'max' => 50],
             [['login'], 'unique'],
             [['password', 'password_repeat'], 'string'],
+            [['password_repeat', 'password'], 'required', 'on' => self::SCENARIO_CREATE],
             [['password'], 'compare', 'on' => self::SCENARIO_CREATE],
-            [['password_repeat'], 'required', 'on' => self::SCENARIO_CREATE],
             [['rol'], 'required'],
         ];
     }
@@ -55,7 +55,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'login' => 'Nombre',
+            'login' => 'Login',
             'password' => 'Contraseña',
             'password_repeat' => 'Confirmar contraseña',
             'rol' => 'Rol',

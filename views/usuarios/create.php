@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
 use yii\web\View;
@@ -48,8 +48,19 @@ $this->registerJs($js);
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="usuarios-form">
+        <?php $form = ActiveForm::begin([
+            'id'=> 'usuarios-form',
+       ]); ?>
+            <?= $form->field($model, 'login')->textInput(['maxlength' => true,'enableAjaxValidation' => true]) ?>
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'rol')->dropdownList(['admin' => 'Administrador', 'mediador' => 'Mediador', 'agente' => 'Agente']) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Registrar', ['class' => 'btn btn-success']) ?>
+            </div>
+        <?php ActiveForm::end(); ?>
+    </div>
 
 </div>
