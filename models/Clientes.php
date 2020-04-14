@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "clientes".
  *
@@ -12,6 +10,10 @@ use Yii;
  */
 class Clientes extends \yii\db\ActiveRecord
 {
+    const SCENARIO_CREATE = 'create';
+    const SCENARIO_UPDATE = 'update';
+
+
     /**
      * {@inheritdoc}
      */
@@ -27,6 +29,15 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             [['nombre'], 'string', 'max' => 255],
+            [['nombre'], 'required', 'on' => self::SCENARIO_CREATE],
+            [['dni'], 'required', 'on' => self::SCENARIO_CREATE],
+            [['dni'], 'string', 'max' => 9],
+            [['dni'], 'unique'],
+            [['direccion'], 'safe'],
+            [['nombre'], 'required'],
+            [['telefono'], 'safe'],
+            [['telefono'], 'integer'],
+            [['fecha_nac'], 'safe'],
         ];
     }
 
@@ -38,6 +49,16 @@ class Clientes extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
+            'fecha_nac' => 'Fecha de nacimiento',
+            'direccion' => 'Dirección',
+            'telefono' => 'Teléfono',
+            'carnet' => 'Carnéts',
+            'polizas' => 'Pólizas',
         ];
+    }
+
+    public function getCliente()
+    {
+        return $this->hasOne(self::className(), ['dni' => 'dni'])->inverseOf('clientes');
     }
 }
