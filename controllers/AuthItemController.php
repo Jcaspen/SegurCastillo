@@ -43,56 +43,6 @@ class AuthItemController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionCrearPermiso()
-    {
-        $auth = Yii::$app->authManager;
-
-        //agrega el permiso "crear un Usuario"
-        $crearUsuario = $auth->createPermission('crearUsuario');
-        $crearUsuario->description = 'Crea un usuario';
-        $auth->add($crearUsuario);
-
-        //agrega el permiso "modificar a un Usuario"
-        $modificarUsuario = $auth->createPermission('modificarUsuario');
-        $modificarUsuario->description = 'Modifica un usuario';
-        $auth->add($modificarUsuario);
-
-        //agrega el permiso "Borrar un Usuario"
-        $borrarUsuario = $auth->createPermission('borrarUsuario');
-        $borrarUsuario->description = 'Borra un usuario';
-        $auth->add($borrarUsuario);
-
-
-        $admin = $auth->createRole('admin');
-        $auth->add($admin);
-        $auth->addChild($admin, $crearUsuario);
-        $auth->addChild($admin, $modificarUsuario);
-        $auth->addChild($admin, $borrarUsuario);
-
-        //agrego Rol de Mediador
-        $mediador = $auth->createRole('mediador');
-        $auth->add($mediador);
-
-        //agrego Rol de Agente
-        $agente = $auth->createRole('agente');
-        $auth->add($agente);
-
-
-
-        /*
-        // agrega el rol "admin" y le asigna el permiso "updatePost"
-        // más los permisos del rol "author"
-        $admin = $auth->createRole('admin');
-        $auth->add($admin);
-        $auth->addChild($admin, $updatePost);
-        $auth->addChild($admin, $author);
-        */
-
-        // asigna roles a usuarios. 1 y 2 son IDs devueltos por IdentityInterface::getId()
-        // usualmente implementado en tu modelo User.
-        $auth->assign($mediador, 1);
-        $auth->assign($admin, 2);
-    }
 
     /**
      * Displays a single AuthItem model.
