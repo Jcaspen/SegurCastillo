@@ -31,11 +31,9 @@ $('#usuarios-login').on('change', function (ev) {
         success: function (data, code, jqXHR) {
             var sel = $('#usuarios-login');
             sel.empty();
-            sel.append(`<option value="\${i}">\${data[i]}</option>`);
-            var option = document.createElement('option');
-            option.value = i;
-            option.innerHTML = data[i];
-            sel.append(option);
+            for (var i in data) {
+                sel.append(`<option value="\${i}">\${data[i]}</option>`);
+            }
             $('#usuarios-login').trigger('change');
         }
     });
@@ -50,7 +48,6 @@ $this->registerJs($js);
 
     <div class="usuarios-form">
         <?php $form = ActiveForm::begin([
-            'id'=> 'usuarios-form',
        ]); ?>
             <?= $form->field($model, 'login')->textInput(['maxlength' => true,'enableAjaxValidation' => true]) ?>
             <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
