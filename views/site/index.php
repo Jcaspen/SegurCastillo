@@ -14,14 +14,5 @@ $this->title = 'SegurCastillo';
         <h1>SegurCastillo</h1>
         <p class="lead">Tu aplicación de seguros de confianza.</p>
     </div>
-    <div class="jumbotron">
-        <p>
-            <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-success']) ?>
-        </p>
-        <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-success']) ?>
-    </div>
+
 </div>

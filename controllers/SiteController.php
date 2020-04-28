@@ -61,7 +61,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (\Yii::$app->user->can('crearUsuario')) {
+            return $this->render('index');
+        }
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('indexx');
+        }
+
         return $this->render('index');
+    }
+
+
+    public function actionIndexx()
+    {
+        return $this->render('indexx');
     }
 
     /**
