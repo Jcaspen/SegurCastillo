@@ -31,10 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'cif',
             'tomador_dni',
             'facturacion_anual',
-            //'capital_asegurado',
-            //'prima',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['empresas/update', 'id' => $key],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['empresas/delete', 'id' => $key],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea eliminar la póliza?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 

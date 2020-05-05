@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "empresas".
  *
@@ -38,7 +36,6 @@ class Empresas extends \yii\db\ActiveRecord
             [['cif', 'tomador_dni'], 'string', 'max' => 9],
             [['facturacion_anual'], 'string', 'max' => 255],
             [['cif'], 'unique'],
-            [['tomador_dni'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
         ];
     }
