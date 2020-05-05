@@ -36,7 +36,7 @@ CREATE TABLE empresas
   , tomador_dni             varchar(9)        UNIQUE NOT NULL
   , facturacion_anual       varchar (255)     NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
-  , prima                   numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        NOT NULL DEFAULT '0'
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
