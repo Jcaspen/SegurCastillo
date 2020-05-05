@@ -24,7 +24,6 @@ use yii\widgets\ActiveForm;
                                                      'controlAyuda' => 'Controla ayudas',
                                                      'controlSiniestros' => 'Controla Siniestros',
                                                      'controlReclamaciones' => 'Controla Reclamaciones',
-                                                     'emitirPlanp' => 'Emitir planes de pensiones',
                                                      'crearUsuario' => 'Crear usuarios',
                                                      'modificarUsuario' => 'Modificar usuario',
                                                      'borrarUsuario' => 'Eliminar usuario']) ?>

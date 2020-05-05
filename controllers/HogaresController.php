@@ -2,17 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\AuthItem;
-use app\models\AuthItemSearch;
 use Yii;
-use yii\filters\VerbFilter;
+use app\models\Hogares;
+use app\models\HogaresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * AuthItemController implements the CRUD actions for AuthItem model.
+ * HogaresController implements the CRUD actions for Hogares model.
  */
-class AuthItemController extends Controller
+class HogaresController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Lists all AuthItem models.
+     * Lists all Hogares models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AuthItemSearch();
+        $searchModel = new HogaresSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Displays a single AuthItem model.
-     * @param string $id
+     * Displays a single Hogares model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,16 +58,16 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Creates a new AuthItem model.
+     * Creates a new Hogares model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new AuthItem();
+        $model = new Hogares();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -76,9 +76,9 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Updates an existing AuthItem model.
+     * Updates an existing Hogares model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -87,7 +87,7 @@ class AuthItemController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -96,9 +96,9 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Deletes an existing AuthItem model.
+     * Deletes an existing Hogares model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -110,15 +110,15 @@ class AuthItemController extends Controller
     }
 
     /**
-     * Finds the AuthItem model based on its primary key value.
+     * Finds the Hogares model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return AuthItem the loaded model
+     * @param integer $id
+     * @return Hogares the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AuthItem::findOne($id)) !== null) {
+        if (($model = Hogares::findOne($id)) !== null) {
             return $model;
         }
 
