@@ -33,7 +33,7 @@ CREATE TABLE empresas
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_empresas')
   , cif                     varchar(9)        UNIQUE NOT NULL
-  , tomador_dni             varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
   , facturacion_anual       varchar (255)     NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        NOT NULL DEFAULT '0'
@@ -58,7 +58,7 @@ CREATE TABLE vida
 (
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_vida')
-  , tomador_dni             varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
   , ocupacion               varchar(255)      NOT NULL
   , ingresos_anuales        varchar(255)
   , tipo_poliza             varchar(255)      DEFAULT 'vida'
@@ -88,7 +88,7 @@ CREATE TABLE hogares
 (
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_hogar')
-  , tomador_dni             varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
   , direccion               varchar(255)      NOT NULL
   , poblacion               varchar(255)      NOT NULL
   , provincia               varchar(255)      NOT NULL
@@ -118,7 +118,7 @@ CREATE TABLE autos
 (
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_autos')
-  , tomador_dni             varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
   , tipo_auto               varchar(255)      NOT NULL
   , marca                   varchar(255)      NOT NULL
   , modelo                  varchar(255)      NOT NULL
@@ -149,7 +149,7 @@ CREATE TABLE no_vida
 (
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_no_vida')
-  , tomador_dni             varchar(9)        UNIQUE NOT NULL
+  , tomador_dni             varchar(9)        NOT NULL
   , riesgo                  varchar(255)      NOT NULL
   , integrantes             numeric(1)        NOT NULL
   , tipo_poliza             varchar(255)      DEFAULT 'decesos'

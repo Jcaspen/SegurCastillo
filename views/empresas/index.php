@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Empresas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Empresa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,15 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'poliza',
             'cif',
             'tomador_dni',
             'facturacion_anual',
-            //'capital_asegurado',
-            //'prima',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['empresas/update', 'id' => $key],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['empresas/delete', 'id' => $key],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea eliminar la póliza?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 

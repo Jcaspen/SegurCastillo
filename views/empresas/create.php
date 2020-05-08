@@ -6,7 +6,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Empresas */
 
-$this->title = 'Create Empresas';
+$this->title = 'Alta Empresa';
 $this->params['breadcrumbs'][] = ['label' => 'Empresas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
-        <?= $form->field($model, 'prima')->textInput() ?>
+        <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
 <?php
          $js = <<<EOT
             $(':button').click(function (event) {

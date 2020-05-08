@@ -12,32 +12,32 @@ $this->title = 'Crear Usuarios';
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$url = Url::to(['usuarios/usuario']);
+$url = Url::to(['usuarios/jax']);
 $js = <<<EOT
-$('#usuarios-login').on('change', function (ev) {
-    var el = $(this);
-    var login = el.val();
-    if (login === '') {
-        $('#usuarios-login').empty();
-        $('#usuarios-login').append('<option value=" "></option>');
-        return;
-    }
-    $.ajax({
-        method: 'GET',
-        url: '$url',
-        data: {
-            login: login
-        },
-        success: function (data, code, jqXHR) {
-            var sel = $('#usuarios-login');
-            sel.empty();
-            for (var i in data) {
-                sel.append(`<option value="\${i}">\${data[i]}</option>`);
-            }
-            $('#usuarios-login').trigger('change');
+    $('#usuarios-login').on('change', function (ev) {
+        var el = $(this);
+        var login = el.val();
+        if (login === '') {
+            $('#usuarios-login').empty();
+            return;
         }
+        $.ajax({
+            method: 'GET',
+            url: '$url',
+            data: {
+                login: login
+            },
+            success: function (data, code, jqXHR) {
+                var sel = $('#usuarios-login');
+                sel.empty();
+                alert("hola");
+                for (var i in data) {
+                    sel.append(`<option value="\${i}">\${data[i]}</option>`);
+                }
+                $('#usuarios-login').trigger('change');
+            }
+        });
     });
-});
 EOT;
 $this->registerJs($js);
 
