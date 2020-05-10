@@ -12,19 +12,20 @@ $this->title = 'Crear Usuarios';
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$url = Url::to(['usuarios/jax']);
-$js = <<<EOT
-    $('#usuarios-login').on('change', function (ev) {
-        var el = $(this);
-        var login = el.val();
-        if (login === '') {
-            $('#usuarios-login').empty();
-            return;
-        }
-        $.ajax({
-            method: 'GET',
-            url: '$url',
-            data: {
+$url = Url::to(['usuarios/usuario']);
+$js = <<<EOF
+$('#usuarios-login').on('change', function (ev) {
+  var el = $(this);
+  var login = el.val();
+  if (login === '') {
+      $('#usuarios-login').empty();
+      el.append(`<option value="hola">Hola</option>`);
+    }
+      return;
+    $.ajax({
+        method: 'GET',
+        url: '$url',
+        data: {
                 login: login
             },
             success: function (data, code, jqXHR) {
@@ -37,8 +38,9 @@ $js = <<<EOT
                 $('#usuarios-login').trigger('change');
             }
         });
-    });
-EOT;
+});
+
+EOF;
 $this->registerJs($js);
 
 ?>
@@ -48,6 +50,7 @@ $this->registerJs($js);
 
     <div class="usuarios-form">
         <?php $form = ActiveForm::begin([
+
        ]); ?>
             <?= $form->field($model, 'login')->textInput(['maxlength' => true,'enableAjaxValidation' => true]) ?>
             <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
