@@ -23,13 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'ocupacion')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'ingresos_anuales')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'ingresos_anuales')->textInput(['readonly'=>true]) ?>
 
         <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida', 'Salud','Plan de Pensiones']) ?>
 
         <?= $form->field($model, 'ingreso_mensual')->textInput() ?>
 
-        <?= $form->field($model, 'capital')->dropdownList(['150000', '300000', '600000', '1000000']) ?>
+        <?= $form->field($model, 'capital')->dropdownList(['150000'=>'150000', '300000'=>'300000', '600000'=>'600000', '1000000'=>'1000000']) ?>
 
         <?= $form->field($model, 'cuestionario')->dropdownList(['Si', 'No']) ?>
 
@@ -38,10 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
                  $js = <<<EOT
                     $(':button').click(function (event) {
-                        var facturacion = document.getElementById("empresas-facturacion_anual").value;
-                        var capital = document.getElementById("empresas-capital_asegurado").value;
-                        var prima= facturacion / 130 + capital /150;
-                        document.getElementById("empresas-prima").value=Math.round(prima);
+                        var ingresoMensual = document.getElementById("vida-ingreso_mensual").value;
+                        var capital = document.getElementById("vida-capital").value;
+                        var ingresoAnual = ingresoMensual * 14;
+                        var dos = ingresoMensual * 5 / 10 ;
+                        var prima= capital / dos ;
+                        document.getElementById("vida-ingresos_anuales").value=Math.round(ingresoAnual);
+                        document.getElementById("vida-prima").value=Math.round(prima);
                     });
         EOT;
         $this->registerJs($js);
