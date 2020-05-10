@@ -140,7 +140,7 @@ class UsuariosController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionJax($login)
+    public function actionUsuario($login)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
