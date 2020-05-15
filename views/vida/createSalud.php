@@ -19,9 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
-
         <?= $form->field($model, 'tipo_poliza')->dropdownList(['Salud']) ?>
+
+        <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'cuestionario')->dropdownList(['Si', 'No']) ?>
 

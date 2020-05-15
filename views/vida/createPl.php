@@ -19,13 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'ocupacion')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'ingreso_mensual')->textInput() ?>
-
         <?= $form->field($model, 'tipo_poliza')->dropdownList(['Plan de Pensiones']) ?>
+
+        <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'prima')->dropdownList(['50'=>'50', '100'=>'100', '500'=>'500', '1000'=>'1000', '3000'=>'3000']) ?>
 

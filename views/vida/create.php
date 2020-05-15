@@ -19,15 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
+        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida']) ?>
+
         <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'ocupacion')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'ingresos_anuales')->textInput(['readonly'=>true]) ?>
-
-        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida']) ?>
-
         <?= $form->field($model, 'ingreso_mensual')->textInput() ?>
+
+        <?= $form->field($model, 'ingresos_anuales')->textInput(['readonly'=>true]) ?>
 
         <?= $form->field($model, 'capital')->dropdownList(['150000'=>'150000', '300000'=>'300000', '600000'=>'600000', '1000000'=>'1000000']) ?>
 
