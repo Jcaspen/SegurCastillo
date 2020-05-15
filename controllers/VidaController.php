@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Vida;
 use app\models\VidaSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * VidaController implements the CRUD actions for Vida model.
@@ -46,7 +46,7 @@ class VidaController extends Controller
 
     /**
      * Displays a single Vida model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -67,7 +67,7 @@ class VidaController extends Controller
         $model = new Vida();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -75,10 +75,36 @@ class VidaController extends Controller
         ]);
     }
 
+    public function actionCreatepl()
+    {
+        $model = new Vida();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createPl', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCreatesalud()
+    {
+        $model = new Vida();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createSalud', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Vida model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +124,7 @@ class VidaController extends Controller
     /**
      * Deletes an existing Vida model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +138,7 @@ class VidaController extends Controller
     /**
      * Finds the Vida model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Vida the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

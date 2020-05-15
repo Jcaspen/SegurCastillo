@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Vida', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Salud', ['createsalud'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -37,7 +39,28 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cuestionario',
             //'prima',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['vida/update', 'id' => $key],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['vida/delete', 'id' => $key],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea eliminar la póliza?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 
