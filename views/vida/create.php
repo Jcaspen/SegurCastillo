@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'ingresos_anuales')->textInput(['readonly'=>true]) ?>
 
-        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida', 'Salud','Plan de Pensiones']) ?>
+        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida']) ?>
 
         <?= $form->field($model, 'ingreso_mensual')->textInput() ?>
 

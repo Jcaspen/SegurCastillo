@@ -75,6 +75,19 @@ class VidaController extends Controller
         ]);
     }
 
+    public function actionCreatepl()
+    {
+        $model = new Vida();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createPl', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Vida model.
      * If update is successful, the browser will be redirected to the 'view' page.
