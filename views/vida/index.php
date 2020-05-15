@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Alta Salud', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Salud', ['createsalud'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

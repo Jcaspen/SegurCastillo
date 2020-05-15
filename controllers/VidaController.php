@@ -88,6 +88,19 @@ class VidaController extends Controller
         ]);
     }
 
+    public function actionCreatesalud()
+    {
+        $model = new Vida();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createSalud', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Vida model.
      * If update is successful, the browser will be redirected to the 'view' page.
