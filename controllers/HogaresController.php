@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Hogares;
 use app\models\HogaresSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * HogaresController implements the CRUD actions for Hogares model.
@@ -46,7 +46,7 @@ class HogaresController extends Controller
 
     /**
      * Displays a single Hogares model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -75,10 +75,23 @@ class HogaresController extends Controller
         ]);
     }
 
+    public function actionCreateco()
+    {
+        $model = new Hogares();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createCo', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Hogares model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +111,7 @@ class HogaresController extends Controller
     /**
      * Deletes an existing Hogares model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +125,7 @@ class HogaresController extends Controller
     /**
      * Finds the Hogares model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Hogares the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

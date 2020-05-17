@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "hogares".
  *
@@ -41,7 +39,6 @@ class Hogares extends \yii\db\ActiveRecord
             [['cp', 'viviendas', 'metros_cuadrados', 'capital_asegurado', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['direccion', 'poblacion', 'provincia'], 'string', 'max' => 255],
-            [['tomador_dni'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
         ];
     }

@@ -7,7 +7,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Hogares */
 
-$this->title = 'Alta Hogar';
+$this->title = 'Alta Comunidad';
 $this->params['breadcrumbs'][] = ['label' => 'Hogares', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'cp')->textInput() ?>
+
+        <?= $form->field($model, 'viviendas')->textInput() ?>
 
         <?= $form->field($model, 'metros_cuadrados')->textInput() ?>
 
