@@ -116,9 +116,21 @@ class VidaController extends Controller
             return $this->redirect(['index']);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($model->tipo_poliza === '0') {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        if ($model->tipo_poliza === '1') {
+            return $this->render('updatePl', [
+                'model' => $model,
+            ]);
+        }
+        if ($model->tipo_poliza === '2') {
+            return $this->render('updateSalud', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**

@@ -1,17 +1,16 @@
 <?php
 
 use yii\bootstrap4\Html;
-use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Vida */
 
-$this->title = 'Modificar Plan de Pensiones';
-$this->params['breadcrumbs'][] = ['label' => 'Pólizas Vida', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Modificar Plan de Pensiones: ' . $model->tomador_dni;
+$this->params['breadcrumbs'][] = ['label' => 'Vidas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Modificar Vida';
 ?>
-<div class="vida-create">
+<div class="vida-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'prima')->dropdownList(['50'=>'50', '100'=>'100', '500'=>'500', '1000'=>'1000', '3000'=>'3000']) ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Emitir', ['class' => 'btn btn-success']) ?>
-                </div>
+        <div class="form-group">
+            <?= Html::submitButton('Actualizar', ['class' => 'btn btn-success']) ?>
+        </div>
 
         <?php ActiveForm::end(); ?>
 
