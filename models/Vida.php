@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "vida".
  *
@@ -40,7 +38,6 @@ class Vida extends \yii\db\ActiveRecord
             [['ingreso_mensual', 'capital', 'cuestionario', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['ocupacion', 'ingresos_anuales', 'tipo_poliza'], 'string', 'max' => 255],
-            [['tomador_dni'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
         ];
     }

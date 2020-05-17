@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tomador_dni',
             'ocupacion',
             'ingresos_anuales',
-            //'tipo_poliza',
+            'tipo_poliza',
             //'ingreso_mensual',
             //'capital',
             //'cuestionario',

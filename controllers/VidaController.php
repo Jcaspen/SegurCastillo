@@ -113,12 +113,24 @@ class VidaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($model->tipo_poliza === '0') {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        if ($model->tipo_poliza === '1') {
+            return $this->render('updatePl', [
+                'model' => $model,
+            ]);
+        }
+        if ($model->tipo_poliza === '2') {
+            return $this->render('updateSalud', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
