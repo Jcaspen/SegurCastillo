@@ -47,18 +47,19 @@ $this->params['breadcrumbs'][] = $this->title;
         EOT;
         $this->registerJs($js);
         ?>
-                <?= Html::Button('Calcular Prima', ['class' => 'btn btn-info']) ?>
+        <div class="form-group">
+            <?= Html::Button('Calcular Prima', ['class' => 'btn btn-info']) ?>
+            <?= Html::a('Imprimir Póliza', ['report'], ['class' => 'btn btn-info']) ?>
 
-                <p>
+            <p>
 
-                </p>
+            </p>
+        </div>
+
         <div class="form-group">
             <?= Html::submitButton('Alta', ['class' => 'btn btn-success']) ?>
         </div>
 
-        <div class="form-group">
-            <?= Html::a('Prueba', ['report'], ['class' => 'btn btn-success']) ?>
-        </div>
 
         <?php ActiveForm::end(); ?>
 
