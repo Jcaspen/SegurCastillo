@@ -3,12 +3,11 @@
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
-use kartik\mpdf\Pdf;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Hogares */
 
-$this->title = 'Alta Hogar';
+$this->title = 'Alta Comunidad';
 $this->params['breadcrumbs'][] = ['label' => 'Hogares', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -30,18 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'cp')->textInput() ?>
 
+        <?= $form->field($model, 'viviendas')->textInput() ?>
+
         <?= $form->field($model, 'metros_cuadrados')->textInput() ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
         <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
 
+
         <?php
                  $js = <<<EOT
                     $(':button').click(function (event) {
                         var metros = document.getElementById("hogares-metros_cuadrados").value;
                         var capital = document.getElementById("hogares-capital_asegurado").value;
-                        var prima= capital / metros;
+                        var viviendas = document.getElementById("hogares-viviendas").value;
+                        var prima= (capital / metros)*viviendas / 1.5 ;
                         document.getElementById("hogares-prima").value=Math.round(prima);
                     });
         EOT;
@@ -55,11 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </p>
         </div>
-
         <div class="form-group">
             <?= Html::submitButton('Alta', ['class' => 'btn btn-success']) ?>
         </div>
-
 
         <?php ActiveForm::end(); ?>
 
