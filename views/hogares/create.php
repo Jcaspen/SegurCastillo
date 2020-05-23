@@ -34,8 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
-        <?= $form->field($model, 'prima')->textInput() ?>
+        <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
 
+        <?php
+                 $js = <<<EOT
+                    $(':button').click(function (event) {
+                        var metros = document.getElementById("hogares-metros_cuadrados").value;
+                        var capital = document.getElementById("hogares-capital_asegurado").value;
+                        var prima= capital / metros;
+                        document.getElementById("hogares-prima").value=Math.round(prima);
+                    });
+        EOT;
+        $this->registerJs($js);
+        ?>
+                <?= Html::Button('Calcular Prima', ['class' => 'btn btn-info']) ?>
+
+                <p>
+
+                </p>
         <div class="form-group">
             <?= Html::submitButton('Alta', ['class' => 'btn btn-success']) ?>
         </div>
