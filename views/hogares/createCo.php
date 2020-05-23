@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'prima')->textInput() ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Alta', ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

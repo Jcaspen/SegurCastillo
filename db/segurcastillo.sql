@@ -93,7 +93,7 @@ CREATE TABLE hogares
   , poblacion               varchar(255)      NOT NULL
   , provincia               varchar(255)      NOT NULL
   , cp                      numeric(5)        NOT NULL
-  , viviendas               numeric(5)        NOT NULL
+  , viviendas               numeric(5)        DEFAULT '1'
   , metros_cuadrados        numeric(5)        NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'
