@@ -3,6 +3,7 @@
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
+use kartik\mpdf\Pdf;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Hogares */
@@ -39,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::submitButton('Alta', ['class' => 'btn btn-success']) ?>
         </div>
 
-        <!--<div class="form-group">
+        <div class="form-group">
             <?= Html::a('Prueba', ['report'], ['class' => 'btn btn-success']) ?>
-        </div>-->
+        </div>
 
         <?php ActiveForm::end(); ?>
 
