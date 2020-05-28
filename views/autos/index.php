@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Autos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Autos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Bicicletas', ['createbc'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Alta Embarcaciones', ['createem'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -38,7 +40,28 @@ $this->params['breadcrumbs'][] = $this->title;
             //'capital_asegurado',
             //'prima',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['autos/update', 'id' => $key],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['autos/delete', 'id' => $key],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea eliminar la póliza?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 

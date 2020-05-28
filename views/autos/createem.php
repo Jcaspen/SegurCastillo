@@ -8,7 +8,7 @@ use kartik\mpdf\Pdf;
 /* @var $this yii\web\View */
 /* @var $model app\models\Autos */
 
-$this->title = 'Alta Autos';
+$this->title = 'Alta Embarcaciones';
 $this->params['breadcrumbs'][] = ['label' => 'Autos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
