@@ -119,11 +119,11 @@ CREATE TABLE autos
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_autos')
   , tomador_dni             varchar(9)        NOT NULL
-  , tipo_auto               varchar(255)      NOT NULL
+  , tipo_auto               varchar(255)      
   , marca                   varchar(255)      NOT NULL
   , modelo                  varchar(255)      NOT NULL
   , matricula               varchar(255)
-  , caballos                numeric(5)        NOT NULL
+  , caballos                numeric(5)        DEFAULT '0'
   , tipo_poliza             varchar(255)      DEFAULT 'autos'
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'

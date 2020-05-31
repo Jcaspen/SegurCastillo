@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "autos".
  *
@@ -37,11 +35,10 @@ class Autos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tomador_dni', 'tipo_auto', 'marca', 'modelo', 'caballos'], 'required'],
+            [['tomador_dni', 'marca', 'modelo'], 'required'],
             [['caballos', 'capital_asegurado', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['tipo_auto', 'marca', 'modelo', 'matricula', 'tipo_poliza'], 'string', 'max' => 255],
-            [['tomador_dni'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
         ];
     }
