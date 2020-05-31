@@ -11,6 +11,12 @@ use kartik\mpdf\Pdf;
 $this->title = 'Alta Autos';
 $this->params['breadcrumbs'][] = ['label' => 'Autos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+
+$marcas=['BMW'=>'BMW','Citröen'=> 'Citröen','Dacia'=> 'Dacia','Fiat'=> 'Fiat','Ford'=> 'Ford'
+        ,'Infiniti'=> 'Infiniti','Kia'=>'Kia','Mazda'=> 'Mazda','Mercedes'=>'Mercedes'
+        ,'Nissan'=>'Nissan','Opel'=>'Opel','Peugeot'=>'Peugeot','Renault'=>'Renault'
+        ,'Opel'=>'Opel','Toyota'=>'Toyota','Volkswagen'=>'Volkswagen','Volvo'=>'Volvo'];
 ?>
 <div class="autos-create">
 
@@ -22,17 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'tipo_auto')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'marca')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Autos'=>'Autos'],['readonly' => true]) ?>
 
         <?= $form->field($model, 'matricula')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'caballos')->textInput() ?>
+        <?= $form->field($model, 'tipo_auto')->dropdownList(['Turismo'=>'Turismo'
+                                                            ,'Derivado de Turismo'=> 'Derivado de Turismo'
+                                                            ,'Todoterreno'=>'Todoterreno'
+                                                            ,'Furgón'=>'Furgón'
+                                                            ,'Ciclomotores'=>'Ciclomotores'
+                                                            ,'Motos'=>'Motos'],['readonly' => true]) ?>
 
-        <?= $form->field($model, 'tipo_poliza')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'marca')->dropdownList([$marcas],['readonly' => true]) ?>
+
+        <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'caballos')->textInput() ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
@@ -41,10 +52,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
                  $js = <<<EOT
                     $(':button').click(function (event) {
-                        var metros = document.getElementById("hogares-metros_cuadrados").value;
-                        var capital = document.getElementById("hogares-capital_asegurado").value;
-                        var prima= capital / metros;
-                        document.getElementById("hogares-prima").value=Math.round(prima);
+                        var capital = document.getElementById("autos-capital_asegurado").value;
+                        var caballos= document.getElementById("autos-caballos").value;
+                        var prima= capital * caballos;
+                        var prima2= prima /19000;
+                        document.getElementById("autos-prima").value=Math.round(prima2);
                     });
         EOT;
         $this->registerJs($js);

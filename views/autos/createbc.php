@@ -12,7 +12,8 @@ $this->title = 'Alta Bicicletas';
 $this->params['breadcrumbs'][] = ['label' => 'Autos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-
+$marcas=['Specialized'=>'Specialized','Scott'=> 'Scott','Trek'=> 'Trek','Giant'=> 'Giant','Canyon'=> 'Canyon'
+        ,'Orbea'=> 'Orbea','BMC'=>'BMC'];
 ?>
 <div class="autos-create">
 
@@ -25,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'tipo_poliza')->dropdownList(['Bicicleta'=>'Bicicleta'],['readonly' => true]) ?>
 
-        <?= $form->field($model, 'marca')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'marca')->dropdownList([$marcas],['readonly' => true]) ?>
 
         <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
 
