@@ -79,6 +79,7 @@ class AutosController extends Controller
     {
         $model = new Autos();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -90,6 +91,7 @@ class AutosController extends Controller
     public function actionCreateem()
     {
         $model = new Autos();
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
