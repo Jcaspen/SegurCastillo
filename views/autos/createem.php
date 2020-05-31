@@ -24,15 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'tipo_auto')->textInput(['maxlength' => true]) ?>
 
+        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Embarcacion'=>'Embarcacion'],['readonly' => true]) ?>
+
+        <?= $form->field($model, 'matricula')->textInput(['maxlength' => true]) ?>
+
         <?= $form->field($model, 'marca')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'matricula')->textInput(['maxlength' => true]) ?>
-
         <?= $form->field($model, 'caballos')->textInput() ?>
-
-        <?= $form->field($model, 'tipo_poliza')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
@@ -41,11 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
                  $js = <<<EOT
                     $(':button').click(function (event) {
-                        var metros = document.getElementById("hogares-metros_cuadrados").value;
-                        var capital = document.getElementById("hogares-capital_asegurado").value;
-                        var prima= capital / metros;
-                        document.getElementById("hogares-prima").value=Math.round(prima);
+                        var capital = document.getElementById("autos-capital_asegurado").value;
+                        var caballos= document.getElementById("autos-caballos").value;
+                        var prima= capital * caballos;
+                        var prima2= prima /2000;
+                        document.getElementById("autos-prima").value=Math.round(prima2);
                     });
+
+
         EOT;
         $this->registerJs($js);
         ?>
