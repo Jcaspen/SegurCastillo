@@ -17,6 +17,7 @@ $this->title = 'SegurCastillo';
     <div class="jumbotron">
         <p>
             <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-success']) ?>
         </p>
         <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-success']) ?>

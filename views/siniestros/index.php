@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Siniestros', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Informar Siniestro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -33,7 +33,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'capital_desenbolsado',
             //'observaciones',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+               'class' => 'yii\grid\ActionColumn',
+               'header' => 'Acciones',
+               'buttons' => [
+                   'update' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Modificar',
+                           ['siniestros/update', 'id' => $key],
+                       );
+                   },
+                   'delete' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Eliminar',
+                           ['siniestros/delete', 'id' => $key],
+                           [
+                               'data-method' => 'POST',
+                               'data-confirm' => '¿Seguro que desea cerrar el siniestro?',
+                           ]
+                       );
+                   },
+               ],
+           ],
         ],
     ]); ?>
 
