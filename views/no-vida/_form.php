@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'integrantes')->textInput() ?>
 
-    <?= $form->field($model, 'tipo_poliza')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tipo_poliza')->dropdownList([$tipo_polizas],['readonly' => true]) ?>
 
     <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
