@@ -178,7 +178,7 @@ CREATE TABLE siniestros
   , tomador_dni             varchar(9)        NOT NULL
   , tipo_poliza             varchar(255)      DEFAULT 'decesos'
   , capital_desenbolsado    numeric(9)        DEFAULT '0'
-  , observaciones           text()        
+  , observaciones           varchar(255)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
