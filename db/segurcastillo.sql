@@ -119,7 +119,7 @@ CREATE TABLE autos
     id                      BIGSERIAL         PRIMARY KEY
   , poliza                  bigint            DEFAULT nextval('polizas_autos')
   , tomador_dni             varchar(9)        NOT NULL
-  , tipo_auto               varchar(255)      
+  , tipo_auto               varchar(255)
   , marca                   varchar(255)      NOT NULL
   , modelo                  varchar(255)      NOT NULL
   , matricula               varchar(255)
@@ -155,6 +155,30 @@ CREATE TABLE no_vida
   , tipo_poliza             varchar(255)      DEFAULT 'decesos'
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'
+  , FOREIGN KEY (tomador_dni)
+    REFERENCES clientes (dni) ON UPDATE CASCADE
+);
+
+
+DROP SEQUENCE IF EXISTS siniestros_polizas CASCADE;
+
+CREATE SEQUENCE siniestros_polizas
+  start with 2300000000
+  increment by 1
+  maxvalue 2499999999
+  minvalue 1;
+;
+
+DROP TABLE IF EXISTS siniestros CASCADE;
+
+CREATE TABLE siniestros
+(
+    id                      BIGSERIAL         PRIMARY KEY
+  , siniestro               bigint            DEFAULT nextval('siniestros_polizas')
+  , tomador_dni             varchar(9)        NOT NULL
+  , tipo_poliza             varchar(255)      DEFAULT 'decesos'
+  , capital_desenbolsado    numeric(9)        DEFAULT '0'
+  , observaciones           text()        
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
