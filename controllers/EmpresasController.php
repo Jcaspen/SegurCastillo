@@ -40,16 +40,16 @@ class EmpresasController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 
-        // construye una consulta a la BD para obtener todos los artículos con status = 1
+        // construye una consulta a la BD
         $query = Empresas::find();
 
-        // obtiene el número total de artículos (pero no recupera los datos de los artículos todavía)
+        // obtiene el número total de empresas
         $count = $query->count();
 
         // crea un objeto paginación con dicho total
         $pagination = new Pagination(['totalCount' => $count]);
 
-        // limita la consulta utilizando la paginación y recupera los artículos
+        // limita la consulta utilizando la paginación y recupera las empresas
         $empresas = $query->offset($pagination->offset)
                           ->limit($pagination->limit)
                           ->all();

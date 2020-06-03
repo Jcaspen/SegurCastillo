@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Clientes;
 use app\models\ClientesSearch;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,9 +39,27 @@ class ClientesController extends Controller
         $searchModel = new ClientesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
+        // construye una consulta a la BD
+        $query = Clientes::find();
+
+        // obtiene el número total de clientes
+        $count = $query->count();
+
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera los clientes
+        $clientes = $query->offset($pagination->offset)
+                                  ->limit($pagination->limit)
+                                  ->all();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'clientes' => $clientes,
         ]);
     }
 

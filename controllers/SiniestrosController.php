@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Siniestros;
 use app\models\SiniestrosSearch;
+use Yii;
+use yii\data\Pagination;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SiniestrosController implements the CRUD actions for Siniestros model.
@@ -38,15 +39,31 @@ class SiniestrosController extends Controller
         $searchModel = new SiniestrosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // construye una consulta a la BD
+        $query = Siniestros::find();
+
+        // obtiene el número total de siniestros
+        $count = $query->count();
+
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera los siniestros
+        $siniestros = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'siniestros' => $siniestros,
         ]);
     }
 
     /**
      * Displays a single Siniestros model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -78,7 +95,7 @@ class SiniestrosController extends Controller
     /**
      * Updates an existing Siniestros model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +115,7 @@ class SiniestrosController extends Controller
     /**
      * Deletes an existing Siniestros model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +129,7 @@ class SiniestrosController extends Controller
     /**
      * Finds the Siniestros model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Siniestros the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

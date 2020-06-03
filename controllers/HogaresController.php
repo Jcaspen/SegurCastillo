@@ -6,6 +6,7 @@ use app\models\Hogares;
 use app\models\HogaresSearch;
 use kartik\mpdf\Pdf;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,9 +40,26 @@ class HogaresController extends Controller
         $searchModel = new HogaresSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // construye una consulta a la BD
+        $query = Hogares::find();
+
+        // obtiene el número total de hogares
+        $count = $query->count();
+
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera los hogares
+        $hogares = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'hogares' => $hogares,
         ]);
     }
 

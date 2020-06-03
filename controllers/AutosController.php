@@ -6,6 +6,7 @@ use app\models\Autos;
 use app\models\AutosSearch;
 use kartik\mpdf\Pdf;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,9 +40,25 @@ class AutosController extends Controller
         $searchModel = new AutosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // construye una consulta a la BD
+        $query = Autos::find();
+
+        // obtiene el número total de polizas autos
+        $count = $query->count();
+
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera las empresas
+        $autos = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'autos' => $autos,
         ]);
     }
 

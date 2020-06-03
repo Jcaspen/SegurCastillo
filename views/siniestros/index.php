@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SiniestrosSearch */
@@ -18,6 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Informar Siniestro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <div class="row">
+    <div class="text-center">
+        <?= LinkPager::widget(['pagination' => $pagination]) ?>
+    </div>
+    </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([

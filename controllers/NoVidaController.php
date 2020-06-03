@@ -6,6 +6,7 @@ use app\models\NoVida;
 use app\models\NoVidaSearch;
 use kartik\mpdf\Pdf;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,9 +40,25 @@ class NoVidaController extends Controller
         $searchModel = new NoVidaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // construye una consulta a la BD
+        $query = NoVida::find();
+
+        // obtiene el número total de no vida
+        $count = $query->count();
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera las polizas de no vida
+        $novida = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'novida' => $novida,
         ]);
     }
 

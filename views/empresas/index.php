@@ -20,9 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Alta Empresa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php echo LinkPager::widget([
-    'pagination' => $pagination,
-]); ?>
+    <div class="row">
+    <div class="text-center">
+        <?= LinkPager::widget(['pagination' => $pagination]) ?>
+    </div>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
