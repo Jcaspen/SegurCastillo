@@ -37,6 +37,10 @@ CREATE TABLE empresas
   , facturacion_anual       varchar (255)     NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        NOT NULL DEFAULT '0'
+  , agente                  VARCHAR(50) NOT NULL UNIQUE
+                           CONSTRAINT ck_login_sin_espacios
+                           CHECK (login NOT LIKE '% %')
+                           REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
@@ -65,7 +69,7 @@ CREATE TABLE vida
   , ingreso_mensual         numeric(4)        DEFAULT '0'
   , capital                 numeric(9)        DEFAULT '0'
   , cuestionario            numeric(1)        NOT NULL
-  , prima                   numeric(9)        DEFAULT '0'
+  , prima                   numeric(9)        DEFAULT '0' REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );

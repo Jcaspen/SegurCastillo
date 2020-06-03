@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Vida;
 use app\models\VidaSearch;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,9 +39,25 @@ class VidaController extends Controller
         $searchModel = new VidaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // construye una consulta a la BD
+        $query = Vida::find();
+
+        // obtiene el número total de vida
+        $count = $query->count();
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera las polizas de  vida
+        $vida = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'vida' => $vida,
         ]);
     }
 

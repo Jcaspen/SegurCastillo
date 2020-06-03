@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\LinkPager;
+use yii\data\Pagination;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EmpresasSearch */
@@ -18,7 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Alta Empresa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+    <div class="text-center">
+        <?= LinkPager::widget(['pagination' => $pagination]) ?>
+    </div>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -54,6 +60,4 @@ $this->params['breadcrumbs'][] = $this->title;
            ],
         ],
     ]); ?>
-
-
 </div>
