@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Empresas;
 use app\models\EmpresasSearch;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,9 +39,27 @@ class EmpresasController extends Controller
         $searchModel = new EmpresasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
+        // construye una consulta a la BD para obtener todos los artículos con status = 1
+        $query = Empresas::find();
+
+        // obtiene el número total de artículos (pero no recupera los datos de los artículos todavía)
+        $count = $query->count();
+
+        // crea un objeto paginación con dicho total
+        $pagination = new Pagination(['totalCount' => $count]);
+
+        // limita la consulta utilizando la paginación y recupera los artículos
+        $empresas = $query->offset($pagination->offset)
+                          ->limit($pagination->limit)
+                          ->all();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'empresas' => $empresas,
         ]);
     }
 
