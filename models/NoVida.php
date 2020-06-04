@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "no_vida".
  *
@@ -34,12 +32,13 @@ class NoVida extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tomador_dni', 'riesgo', 'integrantes'], 'required'],
+            [['tomador_dni', 'riesgo', 'integrantes', 'agente'], 'required'],
             [['integrantes', 'capital_asegurado', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['riesgo', 'tipo_poliza'], 'string', 'max' => 255],
             [['tomador_dni'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
+            [['agente'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['agente' => 'login']],
         ];
     }
 
@@ -57,6 +56,7 @@ class NoVida extends \yii\db\ActiveRecord
             'tipo_poliza' => 'Tipo Poliza',
             'capital_asegurado' => 'Capital Asegurado',
             'prima' => 'Prima',
+            'agente' => 'Agente',
         ];
     }
 
@@ -66,5 +66,13 @@ class NoVida extends \yii\db\ActiveRecord
     public function getTomadorDni()
     {
         return $this->hasOne(Clientes::className(), ['dni' => 'tomador_dni'])->inverseOf('noVida');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgente()
+    {
+        return $this->hasOne(Usuarios::className(), ['login' => 'agente'])->inverseOf('noVida');
     }
 }

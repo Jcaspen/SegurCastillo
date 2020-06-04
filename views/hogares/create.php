@@ -11,6 +11,7 @@ use kartik\mpdf\Pdf;
 $this->title = 'Alta Hogar';
 $this->params['breadcrumbs'][] = ['label' => 'Hogares', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->agente = Yii::$app->user->identity->login;
 ?>
 <div class="hogares-create">
 
@@ -33,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'metros_cuadrados')->textInput() ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
+
+        <?= $form->field($model, 'agente')->dropdownList([$model->agente=>$model->agente]) ?>
 
         <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
 

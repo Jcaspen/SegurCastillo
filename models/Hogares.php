@@ -35,11 +35,12 @@ class Hogares extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tomador_dni', 'direccion', 'poblacion', 'provincia', 'cp', 'metros_cuadrados'], 'required'],
+            [['tomador_dni', 'direccion', 'poblacion', 'provincia', 'cp', 'metros_cuadrados', 'agente'], 'required'],
             [['cp', 'viviendas', 'metros_cuadrados', 'capital_asegurado', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['direccion', 'poblacion', 'provincia'], 'string', 'max' => 255],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
+            [['agente'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['agente' => 'login']],
         ];
     }
 
@@ -60,6 +61,7 @@ class Hogares extends \yii\db\ActiveRecord
             'metros_cuadrados' => 'Metros Cuadrados',
             'capital_asegurado' => 'Capital Asegurado',
             'prima' => 'Prima',
+            'agente' => 'Agente',
         ];
     }
 
@@ -69,5 +71,13 @@ class Hogares extends \yii\db\ActiveRecord
     public function getTomadorDni()
     {
         return $this->hasOne(Clientes::className(), ['dni' => 'tomador_dni'])->inverseOf('hogares');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgente()
+    {
+        return $this->hasOne(Usuarios::className(), ['login' => 'agente'])->inverseOf('hogares');
     }
 }

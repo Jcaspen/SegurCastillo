@@ -10,6 +10,7 @@ use yii\bootstrap4\ActiveForm;
 $this->title = 'Alta Salud';
 $this->params['breadcrumbs'][] = ['label' => 'Pólizas Vida', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->agente = Yii::$app->user->identity->login;
 ?>
 <div class="vida-create">
 
@@ -26,6 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'ocupacion')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'cuestionario')->dropdownList(['Si', 'No']) ?>
+
+        <?= $form->field($model, 'agente')->dropdownList([$model->agente=>$model->agente]) ?>
 
         <?= $form->field($model, 'prima')->dropdownList(['300'=>'Base-300', '500'=>'Oro-500', '650'=>'Platino -650']) ?>
 

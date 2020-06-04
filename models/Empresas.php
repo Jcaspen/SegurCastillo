@@ -31,12 +31,13 @@ class Empresas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cif', 'tomador_dni', 'facturacion_anual'], 'required'],
+            [['cif', 'tomador_dni', 'facturacion_anual', 'agente'], 'required'],
             [['capital_asegurado', 'prima'], 'number'],
             [['cif', 'tomador_dni'], 'string', 'max' => 9],
             [['facturacion_anual'], 'string', 'max' => 255],
             [['cif'], 'unique'],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
+            [['agente'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['agente' => 'login']],
         ];
     }
 
@@ -53,6 +54,7 @@ class Empresas extends \yii\db\ActiveRecord
             'facturacion_anual' => 'Facturacion Anual',
             'capital_asegurado' => 'Capital Asegurado',
             'prima' => 'Prima',
+            'agente' => 'Agente',
         ];
     }
 
@@ -62,5 +64,13 @@ class Empresas extends \yii\db\ActiveRecord
     public function getTomadorDni()
     {
         return $this->hasOne(Clientes::className(), ['dni' => 'tomador_dni'])->inverseOf('empresas');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgente()
+    {
+        return $this->hasOne(Usuarios::className(), ['login' => 'agente'])->inverseOf('empresas');
     }
 }

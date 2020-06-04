@@ -17,6 +17,8 @@ $tipo_polizas=['RC'=>'RC','DJuridica'=> 'DJuridica','Agrícola'=>'Agrícola'
         ,'Viajes'=>'Viajes','Decesos'=>'Decesos'];
 $tipo_riesgo=['Vehículo'=>'Vehículo','Maquinaria'=> 'Maquinaria','Animal'=>'Animal'
         ,'Personal'=>'Personal'];
+
+$model->agente = Yii::$app->user->identity->login;
 ?>
 <div class="no-vida-create">
 
@@ -40,6 +42,8 @@ $tipo_riesgo=['Vehículo'=>'Vehículo','Maquinaria'=> 'Maquinaria','Animal'=>'An
         <?= $form->field($model, 'tipo_poliza')->dropdownList($tipo_polizas) ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
+
+        <?= $form->field($model, 'agente')->dropdownList([$model->agente=>$model->agente]) ?>
 
         <?= $form->field($model, 'prima')->textInput() ?>
 

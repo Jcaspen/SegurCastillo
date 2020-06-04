@@ -17,6 +17,19 @@ CREATE TABLE clientes
   , polizas       numeric(5)
 );
 
+DROP TABLE IF EXISTS usuarios CASCADE;
+
+CREATE TABLE usuarios
+(
+    id         BIGSERIAL   PRIMARY KEY
+  , login      VARCHAR(50) NOT NULL UNIQUE
+                           CONSTRAINT ck_login_sin_espacios
+                           CHECK (login NOT LIKE '% %')
+  , password   VARCHAR(60) NOT NULL
+  , created_at TIMESTAMP   NOT NULL DEFAULT current_timestamp
+  ,rol         VARCHAR(60) NOT NULL
+);
+
 DROP SEQUENCE IF EXISTS polizas_empresas CASCADE;
 
 CREATE SEQUENCE polizas_empresas
@@ -37,9 +50,7 @@ CREATE TABLE empresas
   , facturacion_anual       varchar (255)     NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        NOT NULL DEFAULT '0'
-  , agente                  VARCHAR(50) NOT NULL UNIQUE
-                           CONSTRAINT ck_login_sin_espacios
-                           CHECK (login NOT LIKE '% %')
+  , agente                 VARCHAR(50) NOT NULL
                            REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
@@ -69,7 +80,9 @@ CREATE TABLE vida
   , ingreso_mensual         numeric(4)        DEFAULT '0'
   , capital                 numeric(9)        DEFAULT '0'
   , cuestionario            numeric(1)        NOT NULL
-  , prima                   numeric(9)        DEFAULT '0' REFERENCES usuarios(login)
+  , prima                   numeric(9)        DEFAULT '0'
+  , agente                 VARCHAR(50) NOT NULL
+                           REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
@@ -101,6 +114,8 @@ CREATE TABLE hogares
   , metros_cuadrados        numeric(5)        NOT NULL
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'
+  , agente                 VARCHAR(50) NOT NULL
+                           REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
@@ -131,6 +146,8 @@ CREATE TABLE autos
   , tipo_poliza             varchar(255)      DEFAULT 'autos'
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'
+  , agente                 VARCHAR(50) NOT NULL
+                           REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
@@ -159,6 +176,8 @@ CREATE TABLE no_vida
   , tipo_poliza             varchar(255)      DEFAULT 'decesos'
   , capital_asegurado       numeric(9)        DEFAULT '0'
   , prima                   numeric(9)        DEFAULT '0'
+  , agente                 VARCHAR(50) NOT NULL
+                           REFERENCES usuarios(login)
   , FOREIGN KEY (tomador_dni)
     REFERENCES clientes (dni) ON UPDATE CASCADE
 );
@@ -188,18 +207,7 @@ CREATE TABLE siniestros
 );
 
 
-DROP TABLE IF EXISTS usuarios CASCADE;
 
-CREATE TABLE usuarios
-(
-    id         BIGSERIAL   PRIMARY KEY
-  , login      VARCHAR(50) NOT NULL UNIQUE
-                           CONSTRAINT ck_login_sin_espacios
-                           CHECK (login NOT LIKE '% %')
-  , password   VARCHAR(60) NOT NULL
-  , created_at TIMESTAMP   NOT NULL DEFAULT current_timestamp
-  ,rol         VARCHAR(60) NOT NULL
-);
 
 
 INSERT INTO clientes (dni,nombre,direccion,telefono,fecha_nac,carnet)

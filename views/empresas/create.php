@@ -9,6 +9,7 @@ use yii\bootstrap4\ActiveForm;
 $this->title = 'Alta Empresa';
 $this->params['breadcrumbs'][] = ['label' => 'Empresas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->agente = Yii::$app->user->identity->login;
 ?>
 <div class="empresas-create">
 
@@ -27,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
 
         <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
+
+        <?= $form->field($model, 'agente')->dropdownList([$model->agente=>$model->agente]) ?>
 <?php
          $js = <<<EOT
             $(':button').click(function (event) {
@@ -34,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 var capital = document.getElementById("empresas-capital_asegurado").value;
                 var prima= facturacion / 130 + capital /150;
                 document.getElementById("empresas-prima").value=Math.round(prima);
+
             });
 EOT;
 $this->registerJs($js);
