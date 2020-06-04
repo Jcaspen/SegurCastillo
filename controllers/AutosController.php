@@ -95,7 +95,8 @@ class AutosController extends Controller
     public function actionCreatebc()
     {
         $model = new Autos();
-
+        $model->matricula = 'N/A';
+        $model->tipo_auto = 'Bicicleta';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

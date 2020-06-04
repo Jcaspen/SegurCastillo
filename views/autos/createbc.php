@@ -15,6 +15,8 @@ $model->agente = Yii::$app->user->identity->login;
 
 $marcas=['Specialized'=>'Specialized','Scott'=> 'Scott','Trek'=> 'Trek','Giant'=> 'Giant','Canyon'=> 'Canyon'
         ,'Orbea'=> 'Orbea','BMC'=>'BMC'];
+
+
 ?>
 <div class="autos-create">
 

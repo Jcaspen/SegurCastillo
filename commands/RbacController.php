@@ -85,14 +85,26 @@ class RbacController extends Controller
         $auth->addChild($admin, $crearUsuario);
         $auth->addChild($admin, $modificarUsuario);
         $auth->addChild($admin, $borrarUsuario);
+        $auth->addChild($admin, $asignaPermisos);
 
         //agrego Rol de Mediador
         $mediador = $auth->createRole('mediador');
         $auth->add($mediador);
+        $auth->addChild($mediador, $emitirPoliza);
+        $auth->addChild($mediador, $modificarPoliza);
+        $auth->addChild($mediador, $eliminarPoliza);
+        $auth->addChild($mediador, $controlComunidad);
+        $auth->addChild($mediador, $controlPlanp);
+        $auth->addChild($mediador, $controlEmpresa);
+        $auth->addChild($mediador, $controlSiniestros);
+        $auth->addChild($mediador, $controlReclamaciones);
 
         //agrego Rol de Agente
         $agente = $auth->createRole('agente');
         $auth->add($agente);
+        $auth->addChild($agente, $emitirPoliza);
+        $auth->addChild($agente, $modificarPoliza);
+        $auth->addChild($agente, $eliminarPoliza);
 
 
 
