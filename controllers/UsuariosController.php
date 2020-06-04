@@ -69,17 +69,17 @@ class UsuariosController extends Controller
         if (\Yii::$app->user->can('crearUsuario')) {
             $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
 
-            if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return ActiveForm::validate($model);
-            }
-
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $auth = Yii::$app->authManager;
                 $authRole = $auth->getRole($model->getRol());
                 $auth->assign($authRole, $model->getId());
                 return $this->redirect(['index', 'id' => $model->id]);
             }
+            if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+
 
             return $this->render('create', [
             'model' => $model,
@@ -140,7 +140,7 @@ class UsuariosController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionUsuario($login)
+    public function actionLoguear($login)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
