@@ -32,19 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'poliza',
             'tomador_dni',
+            'matricula',
             'tipo_auto',
             'marca',
-            //'modelo',
-            //'matricula',
-            //'caballos',
+            'modelo',
             //'tipo_poliza',
             //'capital_asegurado',
-            //'prima',
+            'prima',
+            'agente',
+
 
             [
                'class' => 'yii\grid\ActionColumn',

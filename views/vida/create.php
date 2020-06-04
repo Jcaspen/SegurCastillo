@@ -20,7 +20,7 @@ $model->agente = Yii::$app->user->identity->login;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida']) ?>
+        <?= $form->field($model, 'tipo_poliza')->dropdownList(['Vida'=>'Vida']) ?>
 
         <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
