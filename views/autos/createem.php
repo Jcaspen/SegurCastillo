@@ -57,7 +57,7 @@ $model->agente = Yii::$app->user->identity->login;
         ?>
         <div class="form-group">
             <?= Html::Button('Calcular Prima', ['class' => 'btn btn-info']) ?>
-            <?= Html::a('Imprimir Póliza', ['report'], ['class' => 'btn btn-info']) ?>
+            
 
             <p>
 

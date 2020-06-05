@@ -51,6 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
                'buttons' => [
+                   'view' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Imprimir',
+                           ['vida/report', 'id' => $key],
+                       );
+                   },
                    'update' => function ($url, $model, $key) {
                        return Html::a(
                            'Modificar',
