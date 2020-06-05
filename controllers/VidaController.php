@@ -83,39 +83,47 @@ class VidaController extends Controller
     {
         $model = new Vida();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     public function actionCreatepl()
     {
         $model = new Vida();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('controlPlanp')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('createPl', [
+            return $this->render('createPl', [
             'model' => $model,
-        ]);
+            ]);
+        }
     }
 
     public function actionCreatesalud()
     {
         $model = new Vida();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('createSalud', [
+            return $this->render('createSalud', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -128,25 +136,26 @@ class VidaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if (\Yii::$app->user->can('modificarPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
-
-        if ($model->tipo_poliza === '0') {
-            return $this->render('update', [
+            if ($model->tipo_poliza === '0') {
+                return $this->render('update', [
                 'model' => $model,
-            ]);
-        }
-        if ($model->tipo_poliza === '1') {
-            return $this->render('updatePl', [
+                ]);
+            }
+            if ($model->tipo_poliza === '1') {
+                return $this->render('updatePl', [
                 'model' => $model,
-            ]);
-        }
-        if ($model->tipo_poliza === '2') {
-            return $this->render('updateSalud', [
+                ]);
+            }
+            if ($model->tipo_poliza === '2') {
+                return $this->render('updateSalud', [
                 'model' => $model,
-            ]);
+                ]);
+            }
         }
     }
 
@@ -159,8 +168,9 @@ class VidaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if (\Yii::$app->user->can('eliminarPoliza')) {
+            $this->findModel($id)->delete();
+        }
         return $this->redirect(['index']);
     }
 

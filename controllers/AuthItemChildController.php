@@ -68,7 +68,7 @@ class AuthItemChildController extends Controller
         $model = new AuthItemChild();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'parent' => $model->parent, 'child' => $model->child]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -89,7 +89,7 @@ class AuthItemChildController extends Controller
         $model = $this->findModel($parent, $child);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'parent' => $model->parent, 'child' => $model->child]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

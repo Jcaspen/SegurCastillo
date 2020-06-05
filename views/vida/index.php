@@ -17,7 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']) ?>
+        <?php
+        if (\Yii::$app->user->can('controlPlanp')){
+            Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']);
+        }?>
+
         <?= Html::a('Alta Salud', ['createsalud'], ['class' => 'btn btn-success']) ?>
     </p>
 

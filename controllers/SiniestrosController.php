@@ -83,13 +83,16 @@ class SiniestrosController extends Controller
     {
         $model = new Siniestros();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if (\Yii::$app->user->can('controlSiniestros')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -103,13 +106,16 @@ class SiniestrosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if (\Yii::$app->user->can('controlSiniestros')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -121,8 +127,9 @@ class SiniestrosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if (\Yii::$app->user->can('controlSiniestros')) {
+            $this->findModel($id)->delete();
+        }
         return $this->redirect(['index']);
     }
 

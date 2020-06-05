@@ -85,13 +85,16 @@ class EmpresasController extends Controller
     {
         $model = new Empresas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('controlEmpresa')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -105,13 +108,16 @@ class EmpresasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('controlEmpresa')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -123,8 +129,10 @@ class EmpresasController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if (\Yii::$app->user->can('controlEmpresa')) {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        }
         return $this->redirect(['index']);
     }
 

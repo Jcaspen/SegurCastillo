@@ -84,13 +84,16 @@ class NoVidaController extends Controller
     {
         $model = new NoVida();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('create', [
+            return $this->render('create', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -104,13 +107,15 @@ class NoVidaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if (\Yii::$app->user->can('modificarPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
-        ]);
+            ]);
+        }
     }
 
     /**
@@ -122,8 +127,9 @@ class NoVidaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if (\Yii::$app->user->can('eliminarPoliza')) {
+            $this->findModel($id)->delete();
+        }
         return $this->redirect(['index']);
     }
 

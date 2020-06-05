@@ -104,7 +104,8 @@ class RbacController extends Controller
         $auth->add($agente);
         $auth->addChild($agente, $emitirPoliza);
         $auth->addChild($agente, $modificarPoliza);
-        $auth->addChild($agente, $eliminarPoliza);
+        $auth->addChild($agente, $controlSiniestros);
+        $auth->addChild($agente, $controlReclamaciones);
 
 
 
