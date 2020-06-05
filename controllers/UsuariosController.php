@@ -98,6 +98,8 @@ class UsuariosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+
         if (\Yii::$app->user->can('modificarUsuario')) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['index', 'id' => $model->id]);
@@ -119,8 +121,11 @@ class UsuariosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (\Yii::$app->user->can('borrarUsuario')) {
+            $this->findModel($id)->delete();
 
+            return $this->redirect(['index']);
+        }
         return $this->redirect(['index']);
     }
 

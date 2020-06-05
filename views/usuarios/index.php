@@ -35,12 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
                'buttons' => [
-                   'update' => function ($url, $model, $key) {
-                       return Html::a(
-                           'Modificar',
-                           ['usuarios/update', 'id' => $key],
-                       );
-                   },
+                   
                    'delete' => function ($url, $model, $key) {
                        return Html::a(
                            'Eliminar',

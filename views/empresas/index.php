@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'poliza',
             'cif',
             'tomador_dni',
-            'facturacion_anual',
+            'prima',
+            'agente',
             [
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',

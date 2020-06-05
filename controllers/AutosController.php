@@ -84,39 +84,48 @@ class AutosController extends Controller
     {
         $model = new Autos();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+        return $this->redirect(['index']);
     }
     public function actionCreatebc()
     {
         $model = new Autos();
+        $model->matricula = 'N/A';
+        $model->tipo_auto = 'Bicicleta';
 
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
-
-        return $this->render('createbc', [
+            return $this->render('createbc', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
     public function actionCreateem()
     {
         $model = new Autos();
 
+        if (\Yii::$app->user->can('emitirPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
-
-        return $this->render('createem', [
+            return $this->render('createem', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -130,13 +139,16 @@ class AutosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if (\Yii::$app->user->can('modificarPoliza')) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        return $this->render('update', [
+            return $this->render('update', [
             'model' => $model,
-        ]);
+            ]);
+        }
+        return $this->redirect(['index']);
     }
 
     /**
@@ -148,9 +160,11 @@ class AutosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (\Yii::$app->user->can('eliminarPoliza')) {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
     }
 
     /**

@@ -11,9 +11,12 @@ use kartik\mpdf\Pdf;
 $this->title = 'Alta Bicicletas';
 $this->params['breadcrumbs'][] = ['label' => 'Autos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->agente = Yii::$app->user->identity->login;
 
 $marcas=['Specialized'=>'Specialized','Scott'=> 'Scott','Trek'=> 'Trek','Giant'=> 'Giant','Canyon'=> 'Canyon'
         ,'Orbea'=> 'Orbea','BMC'=>'BMC'];
+
+
 ?>
 <div class="autos-create">
 
@@ -31,6 +34,8 @@ $marcas=['Specialized'=>'Specialized','Scott'=> 'Scott','Trek'=> 'Trek','Giant'=
         <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'capital_asegurado')->textInput() ?>
+
+        <?= $form->field($model, 'agente')->dropdownList([$model->agente=>$model->agente]) ?>
 
         <?= $form->field($model, 'prima')->textInput(['readonly'=>true]) ?>
 

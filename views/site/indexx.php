@@ -19,7 +19,12 @@ $this->title = 'SegurCastillo';
             <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-success']) ?>
             <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']) ?>
+
+        <?php
+            if (\Yii::$app->user->can('controlEmpresa')){
+              Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']);
+            }?>
+
         <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-success']) ?>

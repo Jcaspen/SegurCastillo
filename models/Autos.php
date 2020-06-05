@@ -35,11 +35,12 @@ class Autos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tomador_dni', 'marca', 'modelo'], 'required'],
+            [['tomador_dni', 'marca', 'modelo', 'agente'], 'required'],
             [['caballos', 'capital_asegurado', 'prima'], 'number'],
             [['tomador_dni'], 'string', 'max' => 9],
             [['tipo_auto', 'marca', 'modelo', 'matricula', 'tipo_poliza'], 'string', 'max' => 255],
             [['tomador_dni'], 'exist', 'skipOnError' => true, 'targetClass' => Clientes::className(), 'targetAttribute' => ['tomador_dni' => 'dni']],
+            [['agente'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['agente' => 'login']],
         ];
     }
 
@@ -60,6 +61,7 @@ class Autos extends \yii\db\ActiveRecord
             'tipo_poliza' => 'Tipo Poliza',
             'capital_asegurado' => 'Capital Asegurado',
             'prima' => 'Prima',
+            'agente' => 'Agente',
         ];
     }
 
@@ -69,5 +71,13 @@ class Autos extends \yii\db\ActiveRecord
     public function getTomadorDni()
     {
         return $this->hasOne(Clientes::className(), ['dni' => 'tomador_dni'])->inverseOf('autos');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgente()
+    {
+        return $this->hasOne(Usuarios::className(), ['login' => 'agente'])->inverseOf('autos');
     }
 }

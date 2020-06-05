@@ -17,7 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']) ?>
+        <?php
+        if (\Yii::$app->user->can('controlPlanp')){
+            Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']);
+        }?>
+
         <?= Html::a('Alta Salud', ['createsalud'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -34,17 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'poliza',
             'tomador_dni',
-            'ocupacion',
-            'ingresos_anuales',
             'tipo_poliza',
             //'ingreso_mensual',
-            //'capital',
+            'capital',
             //'cuestionario',
-            //'prima',
+            'prima',
+            'agente',
 
             [
                'class' => 'yii\grid\ActionColumn',

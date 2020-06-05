@@ -14,9 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'parent')->dropdownList(['admin' => 'Administrador', 'mediador' => 'Mediador', 'agente' => 'Agente']) ?>
 
-    <?= $form->field($model, 'child')->dropdownList(['eliminarPolizas' => 'Eliminar pólizas',
-                                                     'modificarPolizas' => 'Modificar pólizas',
-                                                     'emitirPolizas' => 'Emitir pólizas',
+    <?= $form->field($model, 'child')->dropdownList(['eliminarPoliza' => 'Eliminar pólizas',
+                                                     'modificarPoliza' => 'Modificar pólizas',
+                                                     'emitirPoliza' => 'Emitir pólizas',
                                                      'controlComunidad' => 'Comunidad',
                                                      'controlPlanp' => 'Planes de pensiones',
                                                      'controlEmpresa' => 'Empresas',
