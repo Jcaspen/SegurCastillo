@@ -71,8 +71,8 @@ class UsuariosController extends Controller
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $auth = Yii::$app->authManager;
-                $authRole = $auth->getRole($model->getRol());
-                $auth->assign($authRole, $model->getId());
+                $authRole = $auth->getRole($model->rol);
+                $auth->assign($authRole, $model->id);
                 return $this->redirect(['index', 'id' => $model->id]);
             }
             if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {

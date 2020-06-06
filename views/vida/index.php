@@ -16,12 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
-        <?php
-        if (\Yii::$app->user->can('controlPlanp')){
-            Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']);
-        }?>
+        <?php if (\Yii::$app->user->can('controlPlanp')){ ?>
+            <?= Html::a('Alta Plan de Pensiones', ['createpl'], ['class' => 'btn btn-success']) ?>
+        <?php  } ?>
 
+
+        <?= Html::a('Alta Vida', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Alta Salud', ['createsalud'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -51,6 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
                'buttons' => [
+                   'view' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Imprimir',
+                           ['vida/report', 'id' => $key],
+                       );
+                   },
                    'update' => function ($url, $model, $key) {
                        return Html::a(
                            'Modificar',

@@ -17,7 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Alta Hogar', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
+        <?php if (\Yii::$app->user->can('controlComunidad')){ ?>
+            <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
+    <?php  } ?>
+
     </p>
 
     <div class="row">
@@ -49,6 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
                'class' => 'yii\grid\ActionColumn',
                'header' => 'Acciones',
                'buttons' => [
+                   'view' => function ($url, $model, $key) {
+                       return Html::a(
+                           'Imprimir',
+                           ['hogares/report', 'id' => $key],
+                       );
+                   },
                    'update' => function ($url, $model, $key) {
                        return Html::a(
                            'Modificar',

@@ -184,10 +184,11 @@ class AutosController extends Controller
     }
 
 
-    public function actionReport()
+    public function actionReport($id)
     {
+        $model = $this->findModel($id);
         // get your HTML raw content without any layouts or scripts
-        $content = 'Esto es el PDF de la Póliza';
+        $content = $this->renderPartial('poliza', ['model' => $model]);
 
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
