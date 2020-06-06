@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
 /* @var $searchModel app\models\AutosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Autos';
+$this->title = 'Hogar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>SEGURCASTILLO </h1>
@@ -16,9 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="jumbotron">
     <h6>Tomador: <?=$model->tomador_dni?></h6>
-    <h6>matricula: <?=$model->matricula?></h6>
-    <h6>Marca: <?=$model->marca?></h6>
-    <h6>Modelo: <?=$model->modelo?></h6>
+    <h6>Dirección: <?=$model->direccion?></h6>
+    <h6>Población: <?=$model->poblacion?></h6>
+    <h6>Provincia: <?=$model->provincia?></h6>
+    <h6>Contenido: <?=$model->capital_asegurado?>€</h6>
     <h6>Prima Anual: <?=$model->prima?>€</h6>
 
 </div>
@@ -29,13 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="jumbotron">
     <ul type=”A”>
-      <li>Daños por agua</li>
+      <li>Daños electricos</li>
       <li>Robo</li>
-      <li>Incendio</li>
-      <li>Lunas</li>
-      <li>Fenómenos atmosféricos</li>
-      <li>Responsabilidad civil (300.000€)</li>
-      <li>Asistencia en viaje</li>
-      <li>Vehículo de sustitución</li>
+      <li>Incendio y otros daños</li>
+      <li>Daños estéticos (1.500€)</li>
+      <li>Defensa Jurídica</li>
+      <li>Responsabilidad civil (150.000€)</li>
+      <li>Garantías complementarias</li>
+      <li>Roturas</li>
   </ul>
 </div>

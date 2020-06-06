@@ -20,12 +20,14 @@ $this->title = 'SegurCastillo';
             <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-success']) ?>
         </p>
 
-        <?php
-            if (\Yii::$app->user->can('controlEmpresa')){
-              Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']);
-            }?>
+        <?php if (Yii::$app->user->can('controlEmpresa')){ ?>
+
+              <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']) ?>
+
+        <?php  } ?>
 
         <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-success']) ?>
+
         <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-success']) ?>

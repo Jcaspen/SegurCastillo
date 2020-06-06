@@ -122,5 +122,6 @@ class RbacController extends Controller
         // usualmente implementado en tu modelo User.
         $auth->assign($mediador, 1);
         $auth->assign($admin, 2);
+        $auth->assign($agente, 3);
     }
 }

@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
 /* @var $searchModel app\models\AutosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Autos';
+$this->title = 'Vida';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>SEGURCASTILLO </h1>
@@ -16,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="jumbotron">
     <h6>Tomador: <?=$model->tomador_dni?></h6>
-    <h6>Ocupación: <?=$model->ocupacion?></h6>
-    <h6>Ingresos Anuales: <?=$model->ingresos_anuales?>€</h6>
+    <h6>Tipo de Póliza: <?=$model->tipo_poliza?></h6>
     <h6>Capital: <?=$model->capital?>€</h6>
     <h6>Prima Anual: <?=$model->prima?>€</h6>
 
@@ -29,13 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="jumbotron">
     <ul type=”A”>
-      <li>Daños por agua</li>
-      <li>Robo</li>
-      <li>Incendio</li>
-      <li>Lunas</li>
-      <li>Fenómenos atmosféricos</li>
+      <li>Asistencia Familiar</li>
+      <li>Asistencia Urgente</li>
       <li>Responsabilidad civil (300.000€)</li>
-      <li>Asistencia en viaje</li>
-      <li>Vehículo de sustitución</li>
+      <li>Seguro Dental</li>
+      <li>Garantías complementarias</li>
   </ul>
 </div>

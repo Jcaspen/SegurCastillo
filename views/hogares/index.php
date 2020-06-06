@@ -17,7 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Alta Hogar', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
+        <?php if (\Yii::$app->user->can('controlComunidad')){ ?>
+            <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
+    <?php  } ?>
+
     </p>
 
     <div class="row">

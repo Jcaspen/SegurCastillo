@@ -215,4 +215,5 @@ INSERT INTO clientes (dni,nombre,direccion,telefono,fecha_nac,carnet)
 
 INSERT INTO usuarios (login, password,rol)
    VALUES ('jlcast', crypt('jlcast1988', gen_salt('bf', 10)),'mediador')
-        , ('admin', crypt('admin', gen_salt('bf', 10)),'admin');
+        , ('admin', crypt('admin', gen_salt('bf', 10)),'admin')
+        , ('agente', crypt('agente', gen_salt('bf', 10)),'agente');

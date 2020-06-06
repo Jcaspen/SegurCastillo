@@ -96,6 +96,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
     }
 
+    /**
+     * Devuelve el rol seleccionado.
+     * @return string Rol seleccionado
+     */
     public function getRol()
     {
         return $this->rol;
