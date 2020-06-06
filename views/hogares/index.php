@@ -37,7 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'poliza',
-            'tomador_dni',
+            [
+          'attribute' => 'tomador_dni',
+          'value' => function ($model) {
+              return Html::a(
+                  Html::encode($model->tomador_dni),
+                  ['clientes/view', 'id' => $model->id]
+              );
+          },
+          'format' => 'raw',
+        ],
             'direccion',
             'poblacion',
             'provincia',
