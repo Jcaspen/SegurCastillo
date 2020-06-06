@@ -8,6 +8,7 @@ use yii\bootstrap4\ActiveForm;
 
 $this->title = 'SegurCastillo';
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -16,20 +17,21 @@ $this->title = 'SegurCastillo';
     </div>
     <div class="jumbotron">
         <p>
-            <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-success']) ?>
-            <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-primary']) ?>
         </p>
 
         <?php if (Yii::$app->user->can('controlEmpresa')){ ?>
 
-              <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-success']) ?>
+              <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-primary']) ?>
 
         <?php  } ?>
 
-        <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-primary']) ?>
 
-        <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-primary']) ?>
     </div>
+</div>
 </div>

@@ -99,3 +99,15 @@ a.desc:after {
 .nav > li > form > button.logout:hover {
     background-color: transparent;
 }
+
+.wrap{
+    background-color: #efe2d5;
+    color: #2c9eca;
+    font-style: normal;
+    font-family: serif;
+    font-size: smaller;
+}
+
+.table{
+    background-color: bisque;
+}
