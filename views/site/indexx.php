@@ -12,8 +12,8 @@ $this->title = 'SegurCastillo';
 
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>SegurCastillo</h1>
+    <div itemscope itemtype="http://schema.org/Product" class="jumbotron" >
+        <h1 itemprop="offers" itemscope itemtype="http://schema.org/Offer">SegurCastillo</h1>
         <p class="lead">Tu aplicación de seguros de confianza.</p>
     </div>
     <div class="jumbotron">
