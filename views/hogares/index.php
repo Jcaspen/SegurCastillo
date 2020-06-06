@@ -21,6 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
     <?php  } ?>
 
+    <?php
+$js = <<<EOT
+            $(':button').click(function (event) {
+                $.ventana();
+        
+            });
+EOT;
+    $this->registerJs($js);
+    ?>
+
+        <?= Html::Button('Catástro', ['class' => 'btn btn-info']) ?>
+
     </p>
 
     <div class="row">

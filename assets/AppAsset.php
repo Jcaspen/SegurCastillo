@@ -23,6 +23,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        '/assets/prueba/ jquery.ventanaPlugin.js',
+        'assets/alertifyjs/alertify.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

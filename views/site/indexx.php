@@ -9,6 +9,7 @@ use yii\bootstrap4\ActiveForm;
 $this->title = 'SegurCastillo';
 ?>
 
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -33,5 +34,24 @@ $this->title = 'SegurCastillo';
         <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-primary']) ?>
     </div>
+    <?php
+$js = <<<EOT
+            $(':button').click(function (event) {
+                $("#ayuda").show("blind");
+                $("div a").hide("slow");
+                $("div a").show("slow");
+
+            });
+EOT;
+    $this->registerJs($js);
+    ?>
+
+        <?= Html::Button('Ayuda', ['class' => 'btn btn-info']) ?>
+
+
+        <div id="ayuda" title="ayuda" style="display: none;">
+            Pulsa en los diferentes botones para ver las pólizas.
+        </div>
+
 </div>
 </div>
