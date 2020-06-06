@@ -147,8 +147,12 @@ class UsuariosController extends Controller
 
     public function actionLoguear($login)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        return Usuarios::lista($login);
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return Usuarios::find()
+                ->select('login')
+                ->where(['login' => $login])
+                ->column();
+        }
     }
 }

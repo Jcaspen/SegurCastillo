@@ -34,7 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'siniestro',
-            'tomador_dni',
+            [
+          'attribute' => 'tomador_dni',
+          'value' => function ($model) {
+              return Html::a(
+                  Html::encode($model->tomador_dni),
+                  ['clientes/view', 'id' => $model->id]
+              );
+          },
+          'format' => 'raw',
+        ],
             'tipo_poliza',
             'capital_desenbolsado',
             //'observaciones',

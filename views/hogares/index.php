@@ -21,6 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Alta Comunidad', ['createco'], ['class' => 'btn btn-success']) ?>
     <?php  } ?>
 
+    <?php
+$js = <<<EOT
+            $(':button').click(function (event) {
+                $.ventana();
+        
+            });
+EOT;
+    $this->registerJs($js);
+    ?>
+
+        <?= Html::Button('Catástro', ['class' => 'btn btn-info']) ?>
+
     </p>
 
     <div class="row">
@@ -37,7 +49,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'poliza',
-            'tomador_dni',
+            [
+          'attribute' => 'tomador_dni',
+          'value' => function ($model) {
+              return Html::a(
+                  Html::encode($model->tomador_dni),
+                  ['clientes/view', 'id' => $model->id]
+              );
+          },
+          'format' => 'raw',
+        ],
             'direccion',
             'poblacion',
             'provincia',

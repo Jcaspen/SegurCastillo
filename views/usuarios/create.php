@@ -15,19 +15,19 @@ $this->params['breadcrumbs'][] = $this->title;
 $url = Url::to(['usuarios/loguear']);
 $js = <<<EOT
 $('#usuarios-login').on('change', function (e) {
-    var el = $(this);
-    var login = el.val();
+    var el= $('#usuarios-login');
+    var login= el.val();
     $.ajax({
         method: 'GET',
         url: '$url',
         data: {
             login: login
         },
-        success: function (data, code, jqXHR) {
-            var sel = $('#usuarios-login');
-            sel.empty();
+        success: function (data, status, xhr) {
+            alert("Hola");
+            el.empty();
             for (var i in data) {
-                sel.append(`<option value="\${i}">\${data[i]}</option>`);
+                el.append(`<option value="\${i}">\${data[i]}</option>`);
             }
         }
     });
