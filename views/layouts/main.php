@@ -10,6 +10,7 @@ use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\filters\AccessControl;
+use cinghie\cookieconsent\widgets\CookieWidget;
 
 AppAsset::register($this);
 ?>
@@ -102,6 +103,12 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
+
+<?= CookieWidget::widget([
+	'message' => 'Este sitio usa cookies',
+	'dismiss' => 'Acepto',
+	'theme' => 'dark-bottom'
+]); ?>
 
 <footer class="footer">
     <div class="container">
