@@ -104,7 +104,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-
 <footer class="footer">
     <div class="container">
         <p class="float-left">&copy; SegurCastillo <?= date('Y') ?></p>
