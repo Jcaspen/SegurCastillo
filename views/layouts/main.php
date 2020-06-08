@@ -104,11 +104,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-<?= CookieWidget::widget([
-	'message' => 'Este sitio usa cookies',
-	'dismiss' => 'Acepto',
-	'theme' => 'dark-bottom'
-]); ?>
 
 <footer class="footer">
     <div class="container">
