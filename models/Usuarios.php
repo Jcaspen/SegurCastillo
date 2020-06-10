@@ -140,6 +140,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(self::className(), ['login' => 'login'])->inverseOf('usuarios');
     }
 
+
+    /**
+     * Funcion que me devuelve un usuario buscado.
+     *
+     * @param  string $login login del usuario
+     * @return   Devuelve el usuario.
+     */
     public static function lista($login)
     {
         return static::find()

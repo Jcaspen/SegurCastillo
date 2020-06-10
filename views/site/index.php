@@ -17,11 +17,4 @@ $this->title = 'SegurCastillo';
         <p class="lead">Tu aplicación de seguros de confianza.</p>
     </div>
 
-
-    <div class="container">
-        <div class="circle one"></div>
-        <div class="circle two"></div>
-        <div class="circle three"></div>
-        <div class="circle four"></div>
-    </div>
 </div>

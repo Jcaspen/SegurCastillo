@@ -8,9 +8,7 @@
  */
 
 return [
-    'nombre' => $faker->unique()->userName,
+    'login' => $faker->unique()->userName,
     'password' => Yii::$app->security->generatePasswordHash('password_' . $index),
-    'auth_key' => Yii::$app->security->generateRandomString(),
-    'telefono' => $faker->phoneNumber,
-    'poblacion' => $faker->city,
+    'rol' => Yii::$app->security->generateRandomString(),
 ];
