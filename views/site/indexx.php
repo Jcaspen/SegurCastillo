@@ -22,7 +22,7 @@ $this->title = 'SegurCastillo';
             <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-primary one']) ?>
         </p>
 
-        <?php if (Yii::$app->user->can('controlEmpresa')){ ?>
+        <?php if (\Yii::$app->user->can('controlEmpresa')){ ?>
 
               <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-primary one']) ?>
 
