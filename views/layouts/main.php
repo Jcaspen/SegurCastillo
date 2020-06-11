@@ -75,7 +75,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/indexx']],
+            Yii::$app->user->can('emitirPoliza') ? (
+            ['label' => 'Home', 'url' => ['/site/indexx']]
+            ) : (['label' => 'Home', 'url' => ['/site/index']]),
             ['label' => 'Contacto', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Conectar', 'url' => ['/site/login']]

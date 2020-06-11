@@ -18,21 +18,21 @@ $this->title = 'SegurCastillo';
     </div>
     <div class="jumbotron">
         <p>
-            <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Clientes', ['clientes/index'], ['class' => 'btn btn-primary one']) ?>
+            <?= Html::a('Siniestros', ['siniestros/index'], ['class' => 'btn btn-primary one']) ?>
         </p>
 
-        <?php if (Yii::$app->user->can('controlEmpresa')){ ?>
+        <?php if (\Yii::$app->user->can('controlEmpresa')){ ?>
 
-              <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-primary']) ?>
+              <?= Html::a('Empresas', ['empresas/index'], ['class' => 'btn btn-primary one']) ?>
 
         <?php  } ?>
 
-        <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Vida', ['vida/index'], ['class' => 'btn btn-primary one']) ?>
 
-        <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Hogares', ['hogares/index'], ['class' => 'btn btn-primary one']) ?>
+        <?= Html::a('Autos', ['autos/index'], ['class' => 'btn btn-primary one']) ?>
+        <?= Html::a('No Vida', ['no-vida/index'], ['class' => 'btn btn-primary one']) ?>
     </div>
     <?php
 $js = <<<EOT

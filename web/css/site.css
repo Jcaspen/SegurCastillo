@@ -111,3 +111,47 @@ a.desc:after {
 .table{
     background-color: bisque;
 }
+
+
+
+.circle {
+
+        left: calc(50% - 3.25em);
+        top: calc(50% - 6.5em);
+        transform-origin: 50% 6.5em;
+        width: 6.5em;
+        height: 6.5em;
+        box-shadow: 0 1em 2em rgba(0, 0, 0, .5);
+}
+
+.one,
+.three {
+        background: rgba(42, 130, 117, 0.75);
+        transition: background 1s ease-in;
+}
+
+.two,
+.four {
+        background: rgba(236, 252, 100, .75);
+}
+
+
+.one {
+        transform: rotateZ(0);
+}
+
+.two {
+        transform: rotateZ(90deg);
+}
+
+.three {
+        transform: rotateZ(180deg);
+}
+
+.four {
+        transform: rotateZ(-90deg);
+}
+
+.circle:hover {
+  background: rgba(42, 130, 117, 0.75);
+}
