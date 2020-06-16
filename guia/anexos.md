@@ -24,7 +24,7 @@
 ---
 
 ### *([R26](https://github.com/jcaspen/segurcastillo/issues/26)) Code Climate*
-![Code Climate](./images/Code Climate.png)
+![CodeClimate](./images/CodeClimate.png)
 
 ### *([R25](https://github.com/jcaspen/segurcastillo/issues/25)) Codeception*
 ![Codeception](./images/codeception.png)
