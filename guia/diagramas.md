@@ -2,7 +2,7 @@
 
 ## Diagramas de clases
 
-![Diagramas de Clases](guia/images/Diagrama.png)
+![Diagramas de Clases](/home/jcaspen/Escritorio/segurcastillo/guia/images/Diagrama.png)
 
 ## Diagramas de estructura lógica de datos
 
