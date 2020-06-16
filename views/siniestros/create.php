@@ -26,7 +26,7 @@ $tipo_polizas=['Comunidad'=>'Comunidad','Hogar'=> 'Hogar','Vida'=> 'Vida','Empre
 
         <?= $form->field($model, 'tomador_dni')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'tipo_poliza')->dropdownList([$tipo_polizas],['readonly' => true]) ?>
+        <?= $form->field($model, 'tipo_poliza')->dropdownList($tipo_polizas,['readonly' => true]) ?>
 
         <?= $form->field($model, 'capital_desenbolsado')->textInput() ?>
 
