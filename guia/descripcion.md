@@ -1,24 +1,20 @@
 # Descripción general del proyecto
 
-Explicar.
+Aplicación web para aseguradoras creada para trabajadores, para poder trabajar desde cualquier lugar, sin necesidad de ir a una oficina.
 
 ## Funcionalidad principal de la aplicación
 
-Explicar.
+Asegurar a un cliente sus bienes más preciados a cambio de una prima anual a través de un usuario de aplicación que será un agente comercial.
 
 ## Objetivos generales
 
-A diferencia de los casos de uso, los objetivos no tienen principio ni fin.
-
-Por ejemplo:
-
-* Objetivo: "gestionar los alquileres y las devoluciones de las películas".
-* Casos de uso: "alquilar una película", "devolver una película".
+* Objetivo: "Poder dar de alta una póliza de cualquier tipo".
+* Casos de uso: "emitir una póliza", "dar de baja una póliza".
 
 ## URL del repositorio
 
-[https://github.com/ricpelo/proyecto](https://github.com/ricpelo/proyecto)
+[https://github.com/Jcaspen/segurcastillo](https://github.com/Jcaspen/segurcastillo)
 
 ## URL de la documentación
 
-[https://ricpelo.github.io/proyecto](https://ricpelo.github.io/proyecto)
+[https://jcaspen.github.io/segurcastillo](https://jcaspen.github.io/segurcastillo)
