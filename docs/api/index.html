@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        
+<link href="./assets/50894ef2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c5f9f43c/solarized_light.css" rel="stylesheet">
+<link href="./assets/56e1aaf3/style.css" rel="stylesheet">
+<script src="./assets/717a4dc/jquery.js"></script>
+<script src="./assets/50894ef2/js/bootstrap.js"></script>
+<script src="./assets/8d259ac9/jssearch.js"></script>    <title>API del proyecto</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w17477" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w17477-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">API del proyecto</a></div><div id="w17477-collapse" class="collapse navbar-collapse"><ul id="w17478" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="../README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-17468" data-toggle="collapse" data-parent="#navigation">Not namespaced classes <b class="caret"></b></a><div id="navigation-17468" class="submenu panel-collapse collapse"><a class="list-group-item" href="./yii.html">Yii</a>
+<a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
+<a class="list-group-item" href="#navigation-17469" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-17469" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a></div>
+<a class="list-group-item" href="#navigation-17470" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-17470" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a>
+<a class="list-group-item" href="./app-commands-rbaccontroller.html">RbacController</a></div>
+<a class="list-group-item" href="#navigation-17471" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-17471" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
+<a class="list-group-item" href="#navigation-17472" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-17472" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-authassignmentcontroller.html">AuthAssignmentController</a>
+<a class="list-group-item" href="./app-controllers-authitemchildcontroller.html">AuthItemChildController</a>
+<a class="list-group-item" href="./app-controllers-authitemcontroller.html">AuthItemController</a>
+<a class="list-group-item" href="./app-controllers-autoscontroller.html">AutosController</a>
+<a class="list-group-item" href="./app-controllers-clientescontroller.html">ClientesController</a>
+<a class="list-group-item" href="./app-controllers-empresascontroller.html">EmpresasController</a>
+<a class="list-group-item" href="./app-controllers-hogarescontroller.html">HogaresController</a>
+<a class="list-group-item" href="./app-controllers-novidacontroller.html">NoVidaController</a>
+<a class="list-group-item" href="./app-controllers-siniestroscontroller.html">SiniestrosController</a>
+<a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
+<a class="list-group-item" href="./app-controllers-usuarioscontroller.html">UsuariosController</a>
+<a class="list-group-item" href="./app-controllers-vidacontroller.html">VidaController</a></div>
+<a class="list-group-item" href="#navigation-17473" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-17473" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-authassignment.html">AuthAssignment</a>
+<a class="list-group-item" href="./app-models-authassignmentsearch.html">AuthAssignmentSearch</a>
+<a class="list-group-item" href="./app-models-authitem.html">AuthItem</a>
+<a class="list-group-item" href="./app-models-authitemchild.html">AuthItemChild</a>
+<a class="list-group-item" href="./app-models-authitemchildsearch.html">AuthItemChildSearch</a>
+<a class="list-group-item" href="./app-models-authitemsearch.html">AuthItemSearch</a>
+<a class="list-group-item" href="./app-models-authrule.html">AuthRule</a>
+<a class="list-group-item" href="./app-models-autos.html">Autos</a>
+<a class="list-group-item" href="./app-models-autossearch.html">AutosSearch</a>
+<a class="list-group-item" href="./app-models-clientes.html">Clientes</a>
+<a class="list-group-item" href="./app-models-clientessearch.html">ClientesSearch</a>
+<a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="./app-models-empresas.html">Empresas</a>
+<a class="list-group-item" href="./app-models-empresassearch.html">EmpresasSearch</a>
+<a class="list-group-item" href="./app-models-hogares.html">Hogares</a>
+<a class="list-group-item" href="./app-models-hogaressearch.html">HogaresSearch</a>
+<a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
+<a class="list-group-item" href="./app-models-novida.html">NoVida</a>
+<a class="list-group-item" href="./app-models-novidasearch.html">NoVidaSearch</a>
+<a class="list-group-item" href="./app-models-siniestros.html">Siniestros</a>
+<a class="list-group-item" href="./app-models-siniestrossearch.html">SiniestrosSearch</a>
+<a class="list-group-item" href="./app-models-user.html">User</a>
+<a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a>
+<a class="list-group-item" href="./app-models-usuariossearch.html">UsuariosSearch</a>
+<a class="list-group-item" href="./app-models-vida.html">Vida</a>
+<a class="list-group-item" href="./app-models-vidasearch.html">VidaSearch</a></div>
+<a class="list-group-item" href="#navigation-17474" data-toggle="collapse" data-parent="#navigation">app\modulos\auth <b class="caret"></b></a><div id="navigation-17474" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-modulos-auth-modulos.html">Modulos</a></div>
+<a class="list-group-item" href="#navigation-17475" data-toggle="collapse" data-parent="#navigation">app\modulos\auth\controllers <b class="caret"></b></a><div id="navigation-17475" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-modulos-auth-controllers-defaultcontroller.html">DefaultController</a></div>
+<a class="list-group-item" href="#navigation-17476" data-toggle="collapse" data-parent="#navigation">app\widgets <b class="caret"></b></a><div id="navigation-17476" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-widgets-alert.html">Alert</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class Reference</h1>
+
+<table class="summaryTable docIndex table table-bordered table-striped table-hover">
+    <colgroup>
+        <col class="col-package" />
+        <col class="col-class" />
+        <col class="col-description" />
+    </colgroup>
+    <tr>
+        <th>Class</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><a href="yii.html">Yii</a></td>
+        <td>Yii is a helper class serving common framework functionalities.</td>
+    </tr>
+    <tr>
+        <td><a href="yiirequirementchecker.html">YiiRequirementChecker</a></td>
+        <td>YiiRequirementChecker allows checking, if current system meets the requirements for running the Yii application.</td>
+    </tr>
+    <tr>
+        <td><a href="app-assets-appasset.html">app\assets\AppAsset</a></td>
+        <td>Main application asset bundle.</td>
+    </tr>
+    <tr>
+        <td><a href="app-commands-hellocontroller.html">app\commands\HelloController</a></td>
+        <td>This command echoes the first argument that you have entered.</td>
+    </tr>
+    <tr>
+        <td><a href="app-commands-rbaccontroller.html">app\commands\RbacController</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="app-components-herokutarget.html">app\components\HerokuTarget</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-authassignmentcontroller.html">app\controllers\AuthAssignmentController</a></td>
+        <td>AuthAssignmentController implements the CRUD actions for AuthAssignment model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-authitemchildcontroller.html">app\controllers\AuthItemChildController</a></td>
+        <td>AuthItemChildController implements the CRUD actions for AuthItemChild model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-authitemcontroller.html">app\controllers\AuthItemController</a></td>
+        <td>AuthItemController implements the CRUD actions for AuthItem model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-autoscontroller.html">app\controllers\AutosController</a></td>
+        <td>AutosController implements the CRUD actions for Autos model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-clientescontroller.html">app\controllers\ClientesController</a></td>
+        <td>ClientesController implements the CRUD actions for Clientes model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-empresascontroller.html">app\controllers\EmpresasController</a></td>
+        <td>EmpresasController implements the CRUD actions for Empresas model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-hogarescontroller.html">app\controllers\HogaresController</a></td>
+        <td>HogaresController implements the CRUD actions for Hogares model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-novidacontroller.html">app\controllers\NoVidaController</a></td>
+        <td>NoVidaController implements the CRUD actions for NoVida model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-siniestroscontroller.html">app\controllers\SiniestrosController</a></td>
+        <td>SiniestrosController implements the CRUD actions for Siniestros model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+        <td>UsuariosController implements the CRUD actions for Usuarios model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-controllers-vidacontroller.html">app\controllers\VidaController</a></td>
+        <td>VidaController implements the CRUD actions for Vida model.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authassignment.html">app\models\AuthAssignment</a></td>
+        <td>This is the model class for table "auth_assignment".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authassignmentsearch.html">app\models\AuthAssignmentSearch</a></td>
+        <td>AuthAssignmentSearch represents the model behind the search form of <code>app\models\AuthAssignment</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authitem.html">app\models\AuthItem</a></td>
+        <td>This is the model class for table "auth_item".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authitemchild.html">app\models\AuthItemChild</a></td>
+        <td>This is the model class for table "auth_item_child".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authitemchildsearch.html">app\models\AuthItemChildSearch</a></td>
+        <td>AuthItemChildSearch represents the model behind the search form of <code>app\models\AuthItemChild</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authitemsearch.html">app\models\AuthItemSearch</a></td>
+        <td>AuthItemSearch represents the model behind the search form of <code>app\models\AuthItem</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-authrule.html">app\models\AuthRule</a></td>
+        <td>This is the model class for table "auth_rule".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-autos.html">app\models\Autos</a></td>
+        <td>This is the model class for table "autos".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-autossearch.html">app\models\AutosSearch</a></td>
+        <td>AutosSearch represents the model behind the search form of <code>app\models\Autos</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-clientes.html">app\models\Clientes</a></td>
+        <td>This is the model class for table "clientes".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-clientessearch.html">app\models\ClientesSearch</a></td>
+        <td>ClientesSearch represents the model behind the search form of <code>app\models\Clientes</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-contactform.html">app\models\ContactForm</a></td>
+        <td>ContactForm is the model behind the contact form.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-empresas.html">app\models\Empresas</a></td>
+        <td>This is the model class for table "empresas".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-empresassearch.html">app\models\EmpresasSearch</a></td>
+        <td>EmpresasSearch represents the model behind the search form of <code>app\models\Empresas</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-hogares.html">app\models\Hogares</a></td>
+        <td>This is the model class for table "hogares".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-hogaressearch.html">app\models\HogaresSearch</a></td>
+        <td>HogaresSearch represents the model behind the search form of <code>app\models\Hogares</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-loginform.html">app\models\LoginForm</a></td>
+        <td>LoginForm is the model behind the login form.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-novida.html">app\models\NoVida</a></td>
+        <td>This is the model class for table "no_vida".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-novidasearch.html">app\models\NoVidaSearch</a></td>
+        <td>NoVidaSearch represents the model behind the search form of <code>app\models\NoVida</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-siniestros.html">app\models\Siniestros</a></td>
+        <td>This is the model class for table "siniestros".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-siniestrossearch.html">app\models\SiniestrosSearch</a></td>
+        <td>SiniestrosSearch represents the model behind the search form of <code>app\models\Siniestros</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-user.html">app\models\User</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+        <td>This is the model class for table "usuarios".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-usuariossearch.html">app\models\UsuariosSearch</a></td>
+        <td>UsuariosSearch represents the model behind the search form of <code>app\models\Usuarios</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-vida.html">app\models\Vida</a></td>
+        <td>This is the model class for table "vida".</td>
+    </tr>
+    <tr>
+        <td><a href="app-models-vidasearch.html">app\models\VidaSearch</a></td>
+        <td>VidaSearch represents the model behind the search form of <code>app\models\Vida</code>.</td>
+    </tr>
+    <tr>
+        <td><a href="app-modulos-auth-modulos.html">app\modulos\auth\Modulos</a></td>
+        <td>Auth module definition class</td>
+    </tr>
+    <tr>
+        <td><a href="app-modulos-auth-controllers-defaultcontroller.html">app\modulos\auth\controllers\DefaultController</a></td>
+        <td>Default controller for the <code>auth</code> module</td>
+    </tr>
+    <tr>
+        <td><a href="app-widgets-alert.html">app\widgets\Alert</a></td>
+        <td>Alert widget renders a message from session flash. All flash messages are displayed
+in the sequence they were assigned using setFlash. You can set message as following:</td>
+    </tr>
+</table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 16 Jun 2020 18:22:03 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
